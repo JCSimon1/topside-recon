@@ -38,7 +38,7 @@ export const useSteamProfile = () =>
     retry: false,
   });
 
-// WRITE FUNCTIONS
+// Definition of mutations
 export const useSaveRank = () => {
   const qc = useQueryClient()
   return useMutation({

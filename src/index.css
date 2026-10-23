@@ -1,16 +1,69 @@
-@import "./fonts.css";
-@import "tailwindcss";
+@import './fonts.css';
+@import 'tailwindcss';
 
 @theme {
+  /* Areas */
   --color-bg: #14171a;
   --color-panel: #1c2124;
   --color-panel-alt: #232a2e;
   --color-border: #333c41;
+  --color-border-soft: #2a3236;
+
+  /* Accents */
   --color-accent: #e8a33d;
+  --color-accent-dim: #8a6428;
   --color-accent-2: #5c8b8f;
+
+  /* Text */
   --color-text: #e9e5dc;
   --color-text-muted: #8b949a;
-  --font-sans: "IBM Plex Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
-  --font-display: "Barlow Condensed", sans-serif;
+  --color-text-faint: #5c6569;
+
+  /* Status */
+  --color-positive: #8faa66;
+  --color-negative: #c1503f;
+
+  /* Trophy tiers */
+  --color-tier-bronze: #b07a4f;
+  --color-tier-silver: #aab3b8;
+  --color-tier-platinum: #8fd0d4;
+
+  /* Heatmap */
+  --color-heat-1: #4a3a1f;
+  --color-heat-3: #c4892f;
+
+  --radius-sm: 3px;
+
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-display: 'Barlow Condensed', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bg font-sans text-text;
+    margin: 0;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -15%;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--color-bg);
+    background-image:
+      radial-gradient(ellipse 24% 28% at 52% 72%, rgba(255, 214, 140, 0.16) 0%, transparent 65%),
+      radial-gradient(ellipse 42% 55% at 70% 36%, rgba(92, 139, 143, 0.42) 0%, rgba(92, 139, 143, 0.08) 48%, transparent 72%),
+      radial-gradient(ellipse 50% 42% at 30% 52%, rgba(232, 163, 61, 0.4) 0%, rgba(138, 100, 40, 0.12) 48%, transparent 72%);
+    background-blend-mode: screen;
+    filter: blur(95px);
+    transform: translateZ(0);
+  }
+
+  @media (min-width: 1024px) {
+    body::before {
+      filter: blur(130px);
+    }
+  }
 }

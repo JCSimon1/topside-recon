@@ -21,6 +21,7 @@ export default function App() {
           </option>
         ))}
       </select>
+      <p className="font-display font-semibold text-[19px] mb-4">Arc Raiders</p>
     </main>
   )
 }

@@ -10,7 +10,7 @@
   --color-accent-2: #5c8b8f;
   --color-text: #e9e5dc;
   --color-text-muted: #8b949a;
-  --font-sans: 'IBM Plex Sans', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-display: 'Barlow Condensed', sans-serif;
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "Barlow Condensed", sans-serif;
 }

@@ -28,7 +28,7 @@ export default function App() {
   if (error) return <p className="p-6 text-red-400">Fehler: {error}</p>
 
   return (
-    <main className="p-6">
+    <main className="bg-bg text-text">
       <h1 className="text-2xl font-bold">Arc Log</h1>
       <p className="mt-2">{rounds.length} Runden geladen</p>
     </main>

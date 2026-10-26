@@ -3,6 +3,7 @@ import { tabs, type View } from './lib/views'
 import TabNav from './components/TabNav'
 import Header from './components/Header'
 import ProfileBar from './components/ProfileBar'
+import Panel from './components/Panel'
 
 
 export default function App() {
@@ -22,7 +23,11 @@ export default function App() {
         {view === 'list' && <p>Übersicht</p>}
         {view === 'analysis' && <p>Auswertung</p>}
         {view === 'distribution' && <p>Verteilung</p>}
-        {view === 'loot' && <p>Loot</p>}
+        {view === 'loot' && (
+          <Panel title="Loot Stash">
+            <p>Inhalt folgt</p>
+          </Panel>
+        )}
         {view === 'trophy' && <p>Trophy Room</p>}
         {view === 'settings' && <p>Profil</p>}
       </main>

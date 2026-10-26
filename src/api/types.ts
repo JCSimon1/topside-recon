@@ -12,6 +12,7 @@ export type SteamProfile =
       status: SteamStatus;
       inGame: boolean;
     };
+
 export type SteamStatus =
   | "offline"
   | "online"
@@ -20,6 +21,7 @@ export type SteamStatus =
   | "snooze"
   | "looking_to_trade"
   | "looking_to_play";
+
 export type TierThresholds = Record<BadgeTier, number>;
 
 // Interfaces

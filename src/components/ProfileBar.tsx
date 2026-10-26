@@ -1,4 +1,5 @@
 import { useSettings } from '../api/queries'
+import SteamCard from './SteamCard'
 
 export default function ProfileBar() {
   const { data: settings } = useSettings()
@@ -27,6 +28,7 @@ export default function ProfileBar() {
                 onError={(e) => (e.currentTarget.style.visibility = 'hidden')}
             />
         )}
+        <SteamCard />
       </div>
     </div>
   )

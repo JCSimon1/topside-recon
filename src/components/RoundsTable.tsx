@@ -1,5 +1,6 @@
 import type { Round } from "../api/types";
 import { fmtDate, fmtMoney, fmtXP } from "../lib/format";
+import HoldButton from "./HoldButton";
 
 interface RoundsTableProps {
   rounds: Round[];
@@ -62,13 +63,14 @@ export default function RoundsTable({
                 </button>
               )}
               {onDelete && (
-                <button
-                  type="button"
-                  onClick={() => onDelete(r)}
-                  className="ml-3 cursor-pointer text-xs text-text-faint hover:text-negative"
-                >
-                  Löschen
-                </button>
+                <span className="ml-3">
+                  <HoldButton
+                    onConfirm={() => onDelete(r)}
+                    title="Gedrückt halten"
+                  >
+                    Löschen
+                  </HoldButton>
+                </span>
               )}
             </td>
           </tr>

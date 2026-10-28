@@ -27,7 +27,7 @@ export default function LootRow({ item }: LootRowProps) {
   }, [draft, item.key, mutate]);
 
   return (
-    <tr className="border-b border-border-soft font-mono last:border-b-0">
+    <tr className="border-b border-border-soft font-mono last:border-b-0 hover:scale-[1.03] hover:z-[2] hover:bg-[#f7882f]/10 position:relative transition-transform duration-200">
       <td className="px-2.5 py-2.5 font-sans">{item.name}</td>
       <td className="px-2.5 py-2.5 text-right text-positive">
         {fmtMoney(item.price)}

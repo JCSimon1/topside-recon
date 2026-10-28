@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { tabs, type View } from './lib/views'
-import TabNav from './components/TabNav'
+import Button from './components/Button'
 import Header from './components/Header'
-import ProfileBar from './components/ProfileBar'
+import LootView from './components/LootView'
 import Panel from './components/Panel'
+import ProfileBar from './components/ProfileBar'
+import TabNav from './components/TabNav'
 
 
 export default function App() {
@@ -19,17 +21,36 @@ export default function App() {
       <TabNav tabs={tabs} active={view} onChange={setView} />
 
       <main>
-        {view === 'entry' && <p>Erfassen</p>}
-        {view === 'list' && <p>Übersicht</p>}
-        {view === 'analysis' && <p>Auswertung</p>}
-        {view === 'distribution' && <p>Verteilung</p>}
-        {view === 'loot' && (
-          <Panel title="Loot Stash">
-            <p>Inhalt folgt</p>
+        {view === 'entry' && 
+          <Panel title="Log Runs">
+            <div className="flex gap-4">
+              <Button onClick={() => alert('Klick')}>Speichern</Button>
+              <Button variant="ghost">Abbrechen</Button>
+              <Button disabled>Deaktiviert</Button>
+            </div>
           </Panel>
-        )}
-        {view === 'trophy' && <p>Trophy Room</p>}
-        {view === 'settings' && <p>Profil</p>}
+        }
+        {view === 'list' && 
+          <Panel title="Übersicht">
+            <p>Inhalt folgt</p>
+          </Panel>}
+        {view === 'analysis' &&  
+          <Panel title="Analyse">
+            <p>Inhalt folgt</p>
+          </Panel>}
+        {view === 'distribution' &&  
+          <Panel title="Verteilung">
+            <p>Inhalt folgt</p>
+          </Panel>}
+        {view === 'loot' && <LootView />}
+        {view === 'trophy' &&  
+          <Panel title="Trophy Room">
+            <p>Inhalt folgt</p>
+          </Panel>}
+        {view === 'settings' && 
+          <Panel title="Settings">
+            <p>Inhalt folgt</p>
+          </Panel>}
       </main>
     </div>
   )

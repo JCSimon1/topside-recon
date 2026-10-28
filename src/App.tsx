@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { tabs, type View } from "./lib/views";
-import Button from "./components/Button";
+import EntryView from "./components/EntryView";
 import Header from "./components/Header";
 import LootView from "./components/LootView";
 import Panel from "./components/Panel";
@@ -20,15 +20,7 @@ export default function App() {
       <TabNav tabs={tabs} active={view} onChange={setView} />
 
       <main>
-        {view === "entry" && (
-          <Panel title="Log Runs">
-            <div className="flex gap-4">
-              <Button onClick={() => alert("Klick")}>Speichern</Button>
-              <Button variant="ghost">Abbrechen</Button>
-              <Button disabled>Deaktiviert</Button>
-            </div>
-          </Panel>
-        )}
+        {view === "entry" && <EntryView />}
         {view === "list" && (
           <Panel title="Übersicht">
             <p>Inhalt folgt</p>

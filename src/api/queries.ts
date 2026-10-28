@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { getConfig } from "./config";
 import { getLoot, saveLootAmount } from "./loot";
-import { getRounds } from "./rounds";
+import { createRound, getRounds } from "./rounds";
 import { getSettings, saveRank } from "./settings";
 import { getSteamProfile } from "./steam";
 
@@ -41,6 +41,15 @@ export const useSteamProfile = () =>
   });
 
 // Definition of mutations
+
+export const useCreateRound = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: createRound,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["rounds"] }),
+  });
+};
+
 export const useSaveLootAmount = () => {
   const qc = useQueryClient();
   return useMutation({

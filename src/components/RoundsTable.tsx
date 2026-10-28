@@ -4,9 +4,14 @@ import { fmtDate, fmtMoney, fmtXP } from "../lib/format";
 interface RoundsTableProps {
   rounds: Round[];
   onEdit?: (round: Round) => void;
+  onDelete?: (round: Round) => void;
 }
 
-export default function RoundsTable({ rounds, onEdit }: RoundsTableProps) {
+export default function RoundsTable({
+  rounds,
+  onEdit,
+  onDelete,
+}: RoundsTableProps) {
   if (rounds.length === 0) {
     return (
       <div className="px-5 py-9 text-center font-mono text-[13px] text-text-faint">
@@ -46,7 +51,7 @@ export default function RoundsTable({ rounds, onEdit }: RoundsTableProps) {
             <td className="px-2.5 py-2.5 text-right text-accent-2">
               {fmtXP(r.xp)}
             </td>
-            <td className="px-2.5 py-2.5 text-right">
+            <td className="px-2.5 py-2.5 text-right whitespace-nowrap">
               {onEdit && (
                 <button
                   type="button"
@@ -54,6 +59,15 @@ export default function RoundsTable({ rounds, onEdit }: RoundsTableProps) {
                   className="cursor-pointer text-xs text-text-faint hover:text-accent"
                 >
                   Bearbeiten
+                </button>
+              )}
+              {onDelete && (
+                <button
+                  type="button"
+                  onClick={() => onDelete(r)}
+                  className="ml-3 cursor-pointer text-xs text-text-faint hover:text-negative"
+                >
+                  Löschen
                 </button>
               )}
             </td>

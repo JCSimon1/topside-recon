@@ -1,10 +1,11 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { getConfig } from "./config";
 import { getLoot, saveLootAmount } from "./loot";
-import { createRound, getRounds } from "./rounds";
+import { createRound, deleteRound, getRounds, updateRound } from "./rounds";
 import { getSettings, saveRank } from "./settings";
 import { getSteamProfile } from "./steam";
 
+import type { RoundPayload } from "./types";
 import type { Settings } from "./types";
 
 export const useConfig = () =>
@@ -46,6 +47,23 @@ export const useCreateRound = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: createRound,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["rounds"] }),
+  });
+};
+
+export const useUpdateRound = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, payload }: { id: number; payload: RoundPayload }) =>
+      updateRound(id, payload),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["rounds"] }),
+  });
+};
+
+export const useDeleteRound = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: deleteRound,
     onSuccess: () => qc.invalidateQueries({ queryKey: ["rounds"] }),
   });
 };

@@ -1,13 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useConfig, useCreateRound } from "../api/queries";
+import { useConfig, useCreateRound, useUpdateRound } from "../api/queries";
 import { toPayload } from "../lib/rounds";
 import { roundFormSchema, type RoundFormValues } from "../lib/roundSchema";
 import Button from "./Button";
 import Field from "./Field";
 
+import type { Round } from "../api/types";
+
 interface RoundFormProps {
+  editing: Round | null;
   nextNumber: number;
+  onDone: () => void;
 }
 
 const inputClass =
@@ -26,9 +30,25 @@ const defaults = (nextNumber: number): RoundFormValues => {
   };
 };
 
-export default function RoundForm({ nextNumber }: RoundFormProps) {
+const fromRound = (r: Round): RoundFormValues => ({
+  number: r.number,
+  date: r.date,
+  time: r.time,
+  map: r.map,
+  condition: r.condition,
+  money: r.money,
+  xp: r.xp,
+});
+
+export default function RoundForm({
+  editing,
+  nextNumber,
+  onDone,
+}: RoundFormProps) {
   const { data: config } = useConfig();
-  const { mutate, isPending } = useCreateRound();
+  const create = useCreateRound();
+  const update = useUpdateRound();
+  const isPending = create.isPending || update.isPending;
   const {
     register,
     handleSubmit,
@@ -36,13 +56,19 @@ export default function RoundForm({ nextNumber }: RoundFormProps) {
     formState: { errors },
   } = useForm<RoundFormValues>({
     resolver: zodResolver(roundFormSchema),
-    defaultValues: defaults(nextNumber),
+    defaultValues: editing ? fromRound(editing) : defaults(nextNumber),
   });
 
-  const onSubmit = (values: RoundFormValues) =>
-    mutate(toPayload(values), {
-      onSuccess: () => reset(defaults(nextNumber + 1)),
-    });
+  const onSubmit = (values: RoundFormValues) => {
+    const payload = toPayload(values);
+    if (editing) {
+      update.mutate({ id: editing.id, payload }, { onSuccess: onDone });
+    } else {
+      create.mutate(payload, {
+        onSuccess: () => reset(defaults(nextNumber + 1)),
+      });
+    }
+  };
 
   return (
     <form
@@ -89,8 +115,13 @@ export default function RoundForm({ nextNumber }: RoundFormProps) {
       </Field>
       <div className="col-span-full flex items-center gap-3">
         <Button type="submit" disabled={isPending}>
-          Runde speichern
+          {editing ? "Änderungen speichern" : "Runde speichern"}
         </Button>
+        {editing && (
+          <Button variant="ghost" onClick={onDone}>
+            Abbrechen
+          </Button>
+        )}
       </div>
     </form>
   );

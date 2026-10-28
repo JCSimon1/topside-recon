@@ -2,6 +2,7 @@ import { useState } from "react";
 import { tabs, type View } from "./lib/views";
 import EntryView from "./components/EntryView";
 import Header from "./components/Header";
+import ListView from "./components/ListView";
 import LootView from "./components/LootView";
 import Panel from "./components/Panel";
 import ProfileBar from "./components/ProfileBar";
@@ -21,11 +22,7 @@ export default function App() {
 
       <main>
         {view === "entry" && <EntryView />}
-        {view === "list" && (
-          <Panel title="Übersicht">
-            <p>Inhalt folgt</p>
-          </Panel>
-        )}
+        {view === "list" && <ListView />}
         {view === "analysis" && (
           <Panel title="Analyse">
             <p>Inhalt folgt</p>

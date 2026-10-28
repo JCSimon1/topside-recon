@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 import type { Round } from "../api/types";
-import { nextRoundNumber, sortRounds } from "./rounds";
+import {
+  filterRounds,
+  nextRoundNumber,
+  paginate,
+  sortRounds,
+  uniqueSorted,
+} from "./rounds";
 
 const round = (overrides: Partial<Round> = {}): Round => ({
   id: 1,
@@ -14,6 +20,7 @@ const round = (overrides: Partial<Round> = {}): Round => ({
   ...overrides,
 });
 
+// Test sorting of rounds
 describe("sortRounds", () => {
   it("returns an empty array for an empty list", () => {
     expect(sortRounds([])).toEqual([]);
@@ -58,5 +65,104 @@ describe("nextRoundNumber", () => {
       round({ number: 7 }),
     ];
     expect(nextRoundNumber(list)).toBe(11);
+  });
+});
+
+// Tests of filtering of the round list
+describe("filterRounds", () => {
+  const list = [
+    round({
+      id: 1,
+      date: "2026-10-01",
+      map: "Buried City",
+      condition: "Clear",
+    }),
+    round({
+      id: 2,
+      date: "2026-10-02",
+      map: "Buried City",
+      condition: "Bird City",
+    }),
+    round({
+      id: 3,
+      date: "2026-09-30",
+      map: "Spaceport",
+      condition: "Night Raid",
+    }),
+  ];
+
+  const none = { map: "", condition: "", month: "" };
+
+  it("returns the complete list for an empty filter", () => {
+    expect(filterRounds(list, none)).toEqual(list);
+  });
+
+  it("filters by map", () => {
+    const ids = filterRounds(list, { ...none, map: "Spaceport" }).map(
+      (r) => r.id,
+    );
+    expect(ids).toEqual([3]);
+  });
+
+  it("filters by condition", () => {
+    const ids = filterRounds(list, { ...none, condition: "Bird City" }).map(
+      (r) => r.id,
+    );
+    expect(ids).toEqual([2]);
+  });
+
+  it("filters by month", () => {
+    const ids = filterRounds(list, { ...none, month: "2026-10" }).map(
+      (r) => r.id,
+    );
+    expect(ids).toEqual([1, 2]);
+  });
+
+  it("combines all filters with AND", () => {
+    const result = filterRounds(list, {
+      map: "Buried City",
+      condition: "Bird City",
+      month: "2026-10",
+    });
+    expect(result.map((r) => r.id)).toEqual([2]);
+  });
+});
+
+// Test list pagination
+describe("paginate", () => {
+  const items = [1, 2, 3, 4, 5, 6, 7];
+
+  it("returns the first page", () => {
+    expect(paginate(items, 1, 3)).toEqual({
+      items: [1, 2, 3],
+      page: 1,
+      totalPages: 3,
+    });
+  });
+
+  it("returns a partial last page", () => {
+    expect(paginate(items, 3, 3).items).toEqual([7]);
+  });
+
+  it("clamps a page below 1", () => {
+    expect(paginate(items, 0, 3).page).toBe(1);
+  });
+
+  it("clamps a page above the last one", () => {
+    expect(paginate(items, 99, 3).page).toBe(3);
+  });
+
+  it("has one page for an empty list", () => {
+    expect(paginate([], 1, 3)).toEqual({ items: [], page: 1, totalPages: 1 });
+  });
+});
+
+describe("uniqueSorted", () => {
+  it("removes duplicates and sorts", () => {
+    expect(uniqueSorted(["b", "a", "b"])).toEqual(["a", "b"]);
+  });
+
+  it("drops empty strings", () => {
+    expect(uniqueSorted(["", "a", ""])).toEqual(["a"]);
   });
 });

@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react'
-import { useSaveLootAmount } from '../api/queries'
-import type { LootItem } from '../api/types'
-import { fmtMoney } from '../lib/format'
+import { useEffect, useState } from "react";
+import { useSaveLootAmount } from "../api/queries";
+import type { LootItem } from "../api/types";
+import { fmtMoney } from "../lib/format";
 
 interface LootRowProps {
-  item: LootItem
+  item: LootItem;
 }
 
 export default function LootRow({ item }: LootRowProps) {
-  const [draft, setDraft] = useState<number | null>(null)
-  const amount = draft ?? item.amount
-  const { mutate } = useSaveLootAmount()
+  const [draft, setDraft] = useState<number | null>(null);
+  const amount = draft ?? item.amount;
+  const { mutate } = useSaveLootAmount();
 
   useEffect(() => {
-    if (draft === null) return
+    if (draft === null) return;
 
     const timer = setTimeout(() => {
       mutate(
         { key: item.key, amount: draft },
         // Entwurf nur verwerfen, wenn inzwischen nicht weitergetippt wurde
         { onSuccess: () => setDraft((d) => (d === draft ? null : d)) },
-      )
-    }, 400)
+      );
+    }, 400);
 
-    return () => clearTimeout(timer)
-  }, [draft, item.key, mutate])
+    return () => clearTimeout(timer);
+  }, [draft, item.key, mutate]);
 
   return (
     <tr className="border-b border-border-soft font-mono last:border-b-0">
@@ -46,5 +46,5 @@ export default function LootRow({ item }: LootRowProps) {
         {fmtMoney(item.price * amount)}
       </td>
     </tr>
-  )
+  );
 }

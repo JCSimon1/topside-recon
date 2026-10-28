@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 interface PanelProps {
-    title?: string
-    children: ReactNode
+  title?: string;
+  children: ReactNode;
 }
 
 export default function Panel({ title, children }: PanelProps) {
@@ -15,5 +15,5 @@ export default function Panel({ title, children }: PanelProps) {
       )}
       {children}
     </section>
-  )
+  );
 }

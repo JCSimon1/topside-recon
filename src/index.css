@@ -1,5 +1,5 @@
-@import './fonts.css';
-@import 'tailwindcss';
+@import "./fonts.css";
+@import "tailwindcss";
 
 @theme {
   /* Areas */
@@ -34,13 +34,13 @@
 
   --radius-sm: 3px;
 
-  --font-sans: 'IBM Plex Sans', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-display: 'Barlow Condensed', sans-serif;
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "Barlow Condensed", sans-serif;
 
-   /* Animations */
+  /* Animations */
   --animate-float: float 3s ease-in-out infinite;
- 
+
   @keyframes float {
     0%,
     100% {
@@ -59,16 +59,30 @@
   }
 
   body::before {
-    content: '';
+    content: "";
     position: fixed;
     inset: -15%;
     z-index: -1;
     pointer-events: none;
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse 24% 28% at 52% 72%, rgba(255, 214, 140, 0.16) 0%, transparent 65%),
-      radial-gradient(ellipse 42% 55% at 70% 36%, rgba(92, 139, 143, 0.42) 0%, rgba(92, 139, 143, 0.08) 48%, transparent 72%),
-      radial-gradient(ellipse 50% 42% at 30% 52%, rgba(232, 163, 61, 0.4) 0%, rgba(138, 100, 40, 0.12) 48%, transparent 72%);
+      radial-gradient(
+        ellipse 24% 28% at 52% 72%,
+        rgba(255, 214, 140, 0.16) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 42% 55% at 70% 36%,
+        rgba(92, 139, 143, 0.42) 0%,
+        rgba(92, 139, 143, 0.08) 48%,
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 50% 42% at 30% 52%,
+        rgba(232, 163, 61, 0.4) 0%,
+        rgba(138, 100, 40, 0.12) 48%,
+        transparent 72%
+      );
     background-blend-mode: screen;
     filter: blur(95px);
     transform: translateZ(0);

@@ -1,1 +1,1 @@
-export const fmtMoney = (n: number) => '$' + n.toLocaleString('de-DE')
+export const fmtMoney = (n: number) => "$" + n.toLocaleString("de-DE");

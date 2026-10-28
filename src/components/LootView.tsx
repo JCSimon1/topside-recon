@@ -1,14 +1,14 @@
-import { useLoot } from '../api/queries'
-import { lootTotal } from '../lib/loot'
-import { fmtMoney } from '../lib/format'
-import LootRow from './LootRow'
-import Panel from './Panel'
+import { useLoot } from "../api/queries";
+import { lootTotal } from "../lib/loot";
+import { fmtMoney } from "../lib/format";
+import LootRow from "./LootRow";
+import Panel from "./Panel";
 
 export default function LootView() {
-  const { data: loot, isPending, error } = useLoot()
+  const { data: loot, isPending, error } = useLoot();
 
-  if (isPending) return <p>Lade…</p>
-  if (error) return <p className="text-negative">Fehler: {error.message}</p>
+  if (isPending) return <p>Lade…</p>;
+  if (error) return <p className="text-negative">Fehler: {error.message}</p>;
 
   return (
     <div className="flex flex-col gap-4.5">
@@ -41,5 +41,5 @@ export default function LootView() {
         </table>
       </Panel>
     </div>
-  )
+  );
 }

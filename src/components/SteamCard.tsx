@@ -1,10 +1,10 @@
-import { useSteamProfile } from '../api/queries'
-import { steamStatusDot, steamStatusLabel } from '../lib/steam'
+import { useSteamProfile } from "../api/queries";
+import { steamStatusDot, steamStatusLabel } from "../lib/steam";
 
 export default function SteamCard() {
-  const { data: steam, isPending } = useSteamProfile()
+  const { data: steam, isPending } = useSteamProfile();
 
-  if (!isPending && (!steam || !steam.configured)) return null
+  if (!isPending && (!steam || !steam.configured)) return null;
 
   return (
     <div className="flex items-center gap-3 border-l border-border-soft px-3.5">
@@ -18,7 +18,9 @@ export default function SteamCard() {
               {steam.name}
             </div>
             <div className="flex items-center gap-1.5 font-mono text-[11px] text-text-muted">
-              <span className={`size-1.75 rounded-full ${steamStatusDot[steam.status]}`} />
+              <span
+                className={`size-1.75 rounded-full ${steamStatusDot[steam.status]}`}
+              />
               {steamStatusLabel[steam.status]}
             </div>
           </>
@@ -34,5 +36,5 @@ export default function SteamCard() {
         />
       )}
     </div>
-  )
+  );
 }

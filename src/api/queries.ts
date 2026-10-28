@@ -5,6 +5,8 @@ import { getRounds } from "./rounds";
 import { getSettings, saveRank } from "./settings";
 import { getSteamProfile } from "./steam";
 
+import type { Settings } from "./types";
+
 export const useConfig = () =>
   useQuery({
     queryKey: ["config"],
@@ -26,9 +28,9 @@ export const useRounds = () =>
 
 export const useSettings = () =>
   useQuery({
-    queryKey: ['settings'],
+    queryKey: ["settings"],
     queryFn: getSettings,
-  })
+  });
 
 export const useSteamProfile = () =>
   useQuery({
@@ -40,18 +42,29 @@ export const useSteamProfile = () =>
 
 // Definition of mutations
 export const useSaveLootAmount = () => {
-  const qc = useQueryClient()
+  const qc = useQueryClient();
   return useMutation({
     mutationFn: ({ key, amount }: { key: string; amount: number }) =>
       saveLootAmount(key, amount),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['loot'] }),
-  })
-}
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loot"] }),
+  });
+};
 
 export const useSaveRank = () => {
-  const qc = useQueryClient()
+  const qc = useQueryClient();
   return useMutation({
     mutationFn: saveRank,
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['settings'] }),
-  })
-}
+    onMutate: async (rank) => {
+      await qc.cancelQueries({ queryKey: ["settings"] });
+      const previous = qc.getQueryData<Settings>(["settings"]);
+      qc.setQueryData<Settings>(["settings"], (old) =>
+        old ? { ...old, rank } : old,
+      );
+      return { previous };
+    },
+    onError: (_err, _rank, context) => {
+      if (context?.previous) qc.setQueryData(["settings"], context.previous);
+    },
+    onSettled: () => qc.invalidateQueries({ queryKey: ["settings"] }),
+  });
+};

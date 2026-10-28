@@ -102,7 +102,7 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "Big Shoulders";
   font-style: normal;
   font-weight: 700;
@@ -118,7 +118,7 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "Prompt";
   font-style: normal;
   font-weight: 500;
@@ -126,7 +126,7 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "Prompt";
   font-style: normal;
   font-weight: 600;
@@ -158,11 +158,11 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/ibm-plex-mono-v20-latin-700.woff2") format("woff2"); 
+  src: url("/fonts/ibm-plex-mono-v20-latin-700.woff2") format("woff2");
 }
 
 /* ibm-plex-sans-500 - latin */
@@ -175,7 +175,7 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "IBM Plex Sans";
   font-style: normal;
   font-weight: 600;
@@ -183,9 +183,9 @@
 }
 
 @font-face {
-  font-display: swap; 
+  font-display: swap;
   font-family: "IBM Plex Sans";
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/ibm-plex-sans-v23-latin-700.woff2") format("woff2"); 
+  src: url("/fonts/ibm-plex-sans-v23-latin-700.woff2") format("woff2");
 }

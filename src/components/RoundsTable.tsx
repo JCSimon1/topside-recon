@@ -4,6 +4,7 @@ import HoldButton from "./HoldButton";
 
 interface RoundsTableProps {
   rounds: Round[];
+  onSelect?: (round: Round) => void;
   onEdit?: (round: Round) => void;
   onDelete?: (round: Round) => void;
 }
@@ -12,6 +13,7 @@ export default function RoundsTable({
   rounds,
   onEdit,
   onDelete,
+  onSelect,
 }: RoundsTableProps) {
   if (rounds.length === 0) {
     return (
@@ -39,7 +41,10 @@ export default function RoundsTable({
         {rounds.map((r) => (
           <tr
             key={r.id}
-            className="border-b border-border-soft font-mono last:border-b-0 hover:scale-[1.03] hover:z-[2] hover:bg-[#f7882f]/10 position:relative transition-transform duration-200"
+            onClick={() => onSelect?.(r)}
+            className={`border-b border-border-soft font-mono last:border-b-0 hover:bg-accent/10 ${
+              onSelect ? "cursor-pointer" : ""
+            }`}
           >
             <td className="px-2.5 py-2.5">{r.number}</td>
             <td className="px-2.5 py-2.5">{fmtDate(r.date)}</td>
@@ -52,7 +57,10 @@ export default function RoundsTable({
             <td className="px-2.5 py-2.5 text-right text-accent-2">
               {fmtXP(r.xp)}
             </td>
-            <td className="px-2.5 py-2.5 text-right whitespace-nowrap">
+            <td
+              className="px-2.5 py-2.5 text-right whitespace-nowrap"
+              onClick={(e) => e.stopPropagation()}
+            >
               {onEdit && (
                 <button
                   type="button"
@@ -66,7 +74,7 @@ export default function RoundsTable({
                 <span className="ml-3">
                   <HoldButton
                     onConfirm={() => onDelete(r)}
-                    title="Gedrückt halten"
+                    title="Gedrückt halten zum Löschen"
                   >
                     Löschen
                   </HoldButton>

@@ -4,12 +4,14 @@ import type { Round } from "../api/types";
 import { nextRoundNumber, sortRounds } from "../lib/rounds";
 import Panel from "./Panel";
 import RoundForm from "./RoundForm";
+import RoundReport from "./RoundReport";
 import RoundsTable from "./RoundsTable";
 
 export default function EntryView() {
   const { data: rounds, isPending, error } = useRounds();
   const { data: config } = useConfig();
   const [editing, setEditing] = useState<Round | null>(null);
+  const [selected, setSelected] = useState<Round | null>(null);
   const { mutate: deleteRound } = useDeleteRound();
 
   if (isPending) return <p>Lade…</p>;
@@ -36,13 +38,26 @@ export default function EntryView() {
           onDone={() => setEditing(null)}
         />
       </Panel>
+
       <Panel title="Letzte Runden">
         <RoundsTable
           rounds={recent}
+          onSelect={setSelected}
           onEdit={setEditing}
           onDelete={handleDelete}
         />
       </Panel>
+
+      {selected && (
+        <RoundReport
+          round={selected}
+          onClose={() => setSelected(null)}
+          onEdit={(r) => {
+            setSelected(null);
+            setEditing(r);
+          }}
+        />
+      )}
     </div>
   );
 }

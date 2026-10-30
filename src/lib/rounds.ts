@@ -50,3 +50,20 @@ export const toPayload = (v: RoundFormValues): RoundPayload => ({
   money: v.money,
   xp: v.xp,
 });
+
+// RoundCard
+export const isDeath = (r: Round, threshold: number) => r.money <= threshold;
+
+export const averages = (list: Round[]) => {
+  const n = list.length;
+  return {
+    avgMoney: n ? list.reduce((s, r) => s + r.money, 0) / n : 0,
+    avgXP: n ? list.reduce((s, r) => s + r.xp, 0) / n : 0,
+  };
+};
+
+export const deltaPercent = (value: number, avg: number) =>
+  avg > 0 ? Math.round(((value - avg) / avg) * 100) : null;
+
+export const isTopRun = (r: Round, avgMoney: number, factor: number) =>
+  avgMoney > 0 && r.money >= avgMoney * factor;

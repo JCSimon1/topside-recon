@@ -9,6 +9,7 @@ import Panel from "./components/Panel";
 import ProfileBar from "./components/ProfileBar";
 import ProfileView from "./components/ProfileView";
 import TabNav from "./components/TabNav";
+import TrophyTest from "./components/TrophyTest";
 
 export default function App() {
   const [view, setView] = useState<View>("entry");
@@ -55,11 +56,7 @@ export default function App() {
           </Panel>
         )}
         {view === "loot" && <LootView />}
-        {view === "trophy" && (
-          <Panel title="Trophy Room">
-            <p>Inhalt folgt</p>
-          </Panel>
-        )}
+        {view === "trophy" && <TrophyTest />}
         {view === "settings" && <ProfileView />}
       </main>
     </div>

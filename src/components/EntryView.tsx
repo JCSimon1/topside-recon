@@ -12,9 +12,16 @@ interface EntryViewProps {
   onEditingChange: (round: Round | null) => void;
 }
 
+interface EntryViewProps {
+  editing: Round | null;
+  onEditingChange: (round: Round | null) => void;
+  onEditDone: () => void;
+}
+
 export default function EntryView({
   editing,
   onEditingChange,
+  onEditDone,
 }: EntryViewProps) {
   const { data: rounds, isPending, error } = useRounds();
   const { data: config } = useConfig();
@@ -42,7 +49,7 @@ export default function EntryView({
           key={editing?.id ?? "new"}
           editing={editing}
           nextNumber={nextRoundNumber(rounds)}
-          onDone={() => onEditingChange(null)}
+          onDone={onEditDone}
         />
       </Panel>
 

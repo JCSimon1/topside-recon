@@ -13,9 +13,18 @@ import TabNav from "./components/TabNav";
 export default function App() {
   const [view, setView] = useState<View>("entry");
   const [editing, setEditing] = useState<Round | null>(null);
+  const [returnTo, setReturnTo] = useState<View | null>(null);
+
   const startEdit = (round: Round) => {
+    setReturnTo(view);
     setEditing(round);
     setView("entry");
+  };
+
+  const finishEdit = () => {
+    setEditing(null);
+    if (returnTo) setView(returnTo);
+    setReturnTo(null);
   };
 
   return (
@@ -28,7 +37,11 @@ export default function App() {
 
       <main>
         {view === "entry" && (
-          <EntryView editing={editing} onEditingChange={setEditing} />
+          <EntryView
+            editing={editing}
+            onEditingChange={setEditing}
+            onEditDone={finishEdit}
+          />
         )}
         {view === "list" && <ListView onEdit={startEdit} />}
         {view === "analysis" && (

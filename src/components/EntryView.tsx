@@ -7,10 +7,17 @@ import RoundForm from "./RoundForm";
 import RoundReport from "./RoundReport";
 import RoundsTable from "./RoundsTable";
 
-export default function EntryView() {
+interface EntryViewProps {
+  editing: Round | null;
+  onEditingChange: (round: Round | null) => void;
+}
+
+export default function EntryView({
+  editing,
+  onEditingChange,
+}: EntryViewProps) {
   const { data: rounds, isPending, error } = useRounds();
   const { data: config } = useConfig();
-  const [editing, setEditing] = useState<Round | null>(null);
   const [selected, setSelected] = useState<Round | null>(null);
   const { mutate: deleteRound } = useDeleteRound();
 
@@ -23,7 +30,7 @@ export default function EntryView() {
     if (!window.confirm(`Runde ${round.number} wirklich löschen?`)) return;
     deleteRound(round.id, {
       onSuccess: () => {
-        if (editing?.id === round.id) setEditing(null);
+        if (editing?.id === round.id) onEditingChange(null);
       },
     });
   };
@@ -35,7 +42,7 @@ export default function EntryView() {
           key={editing?.id ?? "new"}
           editing={editing}
           nextNumber={nextRoundNumber(rounds)}
-          onDone={() => setEditing(null)}
+          onDone={() => onEditingChange(null)}
         />
       </Panel>
 
@@ -43,7 +50,7 @@ export default function EntryView() {
         <RoundsTable
           rounds={recent}
           onSelect={setSelected}
-          onEdit={setEditing}
+          onEdit={onEditingChange}
           onDelete={handleDelete}
         />
       </Panel>
@@ -54,7 +61,7 @@ export default function EntryView() {
           onClose={() => setSelected(null)}
           onEdit={(r) => {
             setSelected(null);
-            setEditing(r);
+            onEditingChange(r);
           }}
         />
       )}

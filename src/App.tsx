@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { tabs, type View } from "./lib/views";
+import { Round } from "./api/types";
 import EntryView from "./components/EntryView";
 import Header from "./components/Header";
 import ListView from "./components/ListView";
@@ -11,6 +12,11 @@ import TabNav from "./components/TabNav";
 
 export default function App() {
   const [view, setView] = useState<View>("entry");
+  const [editing, setEditing] = useState<Round | null>(null);
+  const startEdit = (round: Round) => {
+    setEditing(round);
+    setView("entry");
+  };
 
   return (
     <div className="mx-auto max-w-[1240px] px-5 pt-7 pb-20">
@@ -21,8 +27,10 @@ export default function App() {
       <TabNav tabs={tabs} active={view} onChange={setView} />
 
       <main>
-        {view === "entry" && <EntryView />}
-        {view === "list" && <ListView />}
+        {view === "entry" && (
+          <EntryView editing={editing} onEditingChange={setEditing} />
+        )}
+        {view === "list" && <ListView onEdit={startEdit} />}
         {view === "analysis" && (
           <Panel title="Analyse">
             <p>Inhalt folgt</p>

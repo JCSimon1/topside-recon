@@ -9,7 +9,7 @@ import Modal from "./Modal";
 interface RoundReportProps {
   round: Round;
   onClose: () => void;
-  onEdit: (round: Round) => void;
+  onEdit?: (round: Round) => void;
 }
 
 function Delta({
@@ -92,9 +92,11 @@ export default function RoundReport({
           </div>
         </div>
         <div className="mx-6 mt-4 flex justify-end gap-2.5 border-t border-border-soft pt-3.5">
-          <Button variant="ghost" onClick={() => onEdit(round)}>
-            Bearbeiten
-          </Button>
+          {onEdit && (
+            <Button variant="ghost" onClick={() => onEdit(round)}>
+              Bearbeiten
+            </Button>
+          )}
           <Button onClick={onClose}>Schließen</Button>
         </div>
       </div>

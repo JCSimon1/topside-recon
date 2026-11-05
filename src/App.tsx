@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { tabs, type View } from "./lib/views";
-import { Round } from "./api/types";
+import type { Round } from "./api/types";
 import EntryView from "./components/EntryView";
 import Header from "./components/Header";
 import ListView from "./components/ListView";

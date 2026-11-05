@@ -17,7 +17,11 @@ const emptyFilter: RoundFilter = { map: "", condition: "", month: "" };
 const selectClass =
   "rounded-sm border border-border bg-panel-alt px-2.5 py-1.5 text-[13px] text-text outline-none focus:border-accent-2";
 
-export default function ListView() {
+interface ListViewProps {
+  onEdit?: (round: Round) => void;
+}
+
+export default function ListView({ onEdit }: ListViewProps) {
   const { data: rounds, isPending, error } = useRounds();
   const { data: config } = useConfig();
   const { mutate: deleteRound } = useDeleteRound();

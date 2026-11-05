@@ -10,11 +10,6 @@ import RoundsTable from "./RoundsTable";
 interface EntryViewProps {
   editing: Round | null;
   onEditingChange: (round: Round | null) => void;
-}
-
-interface EntryViewProps {
-  editing: Round | null;
-  onEditingChange: (round: Round | null) => void;
   onEditDone: () => void;
 }
 

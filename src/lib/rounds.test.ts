@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import type { Round } from "../api/types";
 import {
+  averages,
+  deltaPercent,
   filterRounds,
+  isDeath,
+  isTopRun,
   nextRoundNumber,
   paginate,
   sortRounds,
@@ -164,5 +168,75 @@ describe("uniqueSorted", () => {
 
   it("drops empty strings", () => {
     expect(uniqueSorted(["", "a", ""])).toEqual(["a"]);
+  });
+});
+
+describe("isDeath", () => {
+  it("counts money equal to the threshold as a death", () => {
+    expect(isDeath(round({ money: 0 }), 0)).toBe(true);
+  });
+
+  it("counts money below the threshold as a death", () => {
+    expect(isDeath(round({ money: 500 }), 1000)).toBe(true);
+  });
+
+  it("does not count money above the threshold", () => {
+    expect(isDeath(round({ money: 1 }), 0)).toBe(false);
+  });
+});
+
+describe("averages", () => {
+  it("returns 0 for an empty list", () => {
+    expect(averages([])).toEqual({ avgMoney: 0, avgXP: 0 });
+  });
+
+  it("returns the mean of money and xp", () => {
+    const list = [
+      round({ money: 1000, xp: 200 }),
+      round({ money: 3000, xp: 600 }),
+    ];
+    expect(averages(list)).toEqual({ avgMoney: 2000, avgXP: 400 });
+  });
+
+  it("includes zero-money runs in the mean", () => {
+    const list = [round({ money: 0 }), round({ money: 1000 })];
+    expect(averages(list).avgMoney).toBe(500);
+  });
+});
+
+describe("deltaPercent", () => {
+  it("returns a positive value above the average", () => {
+    expect(deltaPercent(150, 100)).toBe(50);
+  });
+
+  it("returns a negative value below the average", () => {
+    expect(deltaPercent(50, 100)).toBe(-50);
+  });
+
+  it("returns 0 when equal to the average", () => {
+    expect(deltaPercent(100, 100)).toBe(0);
+  });
+
+  it("rounds to whole percent", () => {
+    expect(deltaPercent(133, 100)).toBe(33);
+    expect(deltaPercent(1, 3)).toBe(-67);
+  });
+
+  it("returns null when there is no average", () => {
+    expect(deltaPercent(100, 0)).toBeNull();
+  });
+});
+
+describe("isTopRun", () => {
+  it("counts a run exactly on the threshold", () => {
+    expect(isTopRun(round({ money: 1200 }), 1000, 1.2)).toBe(true);
+  });
+
+  it("does not count a run just below the threshold", () => {
+    expect(isTopRun(round({ money: 1199 }), 1000, 1.2)).toBe(false);
+  });
+
+  it("is never a top run when the average is 0", () => {
+    expect(isTopRun(round({ money: 999999 }), 0, 1.2)).toBe(false);
   });
 });

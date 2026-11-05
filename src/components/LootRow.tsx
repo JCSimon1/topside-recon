@@ -18,7 +18,6 @@ export default function LootRow({ item }: LootRowProps) {
     const timer = setTimeout(() => {
       mutate(
         { key: item.key, amount: draft },
-        // Entwurf nur verwerfen, wenn inzwischen nicht weitergetippt wurde
         { onSuccess: () => setDraft((d) => (d === draft ? null : d)) },
       );
     }, 400);

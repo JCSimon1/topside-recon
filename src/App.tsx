@@ -2,11 +2,11 @@ import { useState } from "react";
 import { tabs, type View } from "./lib/views";
 import type { Round } from "./api/types";
 import AnalysisView from "./components/AnalysisView";
+import DistributionView from "./components/DistributionView";
 import EntryView from "./components/EntryView";
 import Header from "./components/Header";
 import ListView from "./components/ListView";
 import LootView from "./components/LootView";
-import Panel from "./components/Panel";
 import ProfileBar from "./components/ProfileBar";
 import ProfileView from "./components/ProfileView";
 import TabNav from "./components/TabNav";
@@ -47,11 +47,7 @@ export default function App() {
         )}
         {view === "list" && <ListView onEdit={startEdit} />}
         {view === "analysis" && <AnalysisView />}
-        {view === "distribution" && (
-          <Panel title="Verteilung">
-            <p>Inhalt folgt</p>
-          </Panel>
-        )}
+        {view === "distribution" && <DistributionView />}
         {view === "loot" && <LootView />}
         {view === "trophy" && <TrophyTest />}
         {view === "settings" && <ProfileView />}

@@ -10,6 +10,13 @@ export interface Stats {
   avgXP: number;
 }
 
+export type PieMetric = "totalMoney" | "totalXP" | "count";
+
+export interface Slice {
+  name: string;
+  value: number;
+}
+
 export type BreakdownDim = "map" | "condition" | "month";
 
 export const keyFor: Record<BreakdownDim, (r: Round) => string> = {
@@ -64,3 +71,18 @@ export const breakdownBy = (
     key,
     ...statsFor(items, deathThreshold),
   }));
+
+export const pieSlices = (
+  rows: Breakdown[],
+  metric: PieMetric,
+  topN: number,
+): Slice[] => {
+  const sorted = rows
+    .filter((r) => r[metric] > 0)
+    .sort((a, b) => b[metric] - a[metric]);
+  const top = sorted
+    .slice(0, topN)
+    .map((r) => ({ name: r.key, value: r[metric] }));
+  const rest = sorted.slice(topN).reduce((s, r) => s + r[metric], 0);
+  return rest > 0 ? [...top, { name: "Sonstige", value: rest }] : top;
+};

@@ -1,3 +1,5 @@
+// Modal-Karte zu einer Runde mit Map-Banner, Werten, Abweichung zum Durchschnitt, Count-up, Scanline und “Top Run”-Stempel. Der Bearbeiten-Button erscheint nur mit onEdit.
+
 import { useConfig, useRounds } from "../api/queries";
 import type { Round } from "../api/types";
 import { fmtDate, fmtMoney, fmtXP, slugify } from "../lib/format";
@@ -67,7 +69,7 @@ export default function RoundReport({
   return (
     <Modal onClose={onClose}>
       <div
-        className={`relative w-[420px] max-w-full overflow-hidden rounded-md border bg-panel pb-5 motion-safe:animate-rc-card ${
+        className={`relative w-105 max-w-full overflow-hidden rounded-md border bg-panel pb-5 motion-safe:animate-rc-card ${
           top
             ? "border-accent/40 shadow-[0_0_46px_rgba(232,163,61,0.28)]"
             : "border-border"
@@ -88,7 +90,7 @@ export default function RoundReport({
         {top && (
           <div
             aria-hidden
-            className="absolute top-10 left-4 z-[4] rounded-sm border-2 border-accent px-2.5 py-1 font-display text-[15px] font-bold tracking-[1.5px] text-accent mix-blend-screen motion-safe:animate-rc-stamp motion-reduce:rotate-[-9deg]"
+            className="absolute top-10 left-4 z-4 rounded-sm border-2 border-accent px-2.5 py-1 font-display text-[15px] font-bold tracking-[1.5px] text-accent mix-blend-screen motion-safe:animate-rc-stamp motion-reduce:rotate-[-9deg]"
           >
             TOP RUN
           </div>
@@ -103,11 +105,11 @@ export default function RoundReport({
           <div className="relative mt-3">
             <div
               aria-hidden
-              className="absolute -inset-x-6 -top-4 bottom-0 z-[2] origin-top bg-panel motion-safe:animate-rc-reveal motion-reduce:hidden"
+              className="absolute -inset-x-6 -top-4 bottom-0 z-2 origin-top bg-panel motion-safe:animate-rc-reveal motion-reduce:hidden"
             />
             <div
               aria-hidden
-              className="absolute -inset-x-6 top-0 z-[3] h-0.5 bg-linear-to-r from-transparent via-accent to-transparent opacity-0 shadow-[0_0_10px_1px_rgba(232,163,61,0.7)] motion-safe:animate-rc-sweep"
+              className="absolute -inset-x-6 top-0 z-3 h-0.5 bg-linear-to-r from-transparent via-accent to-transparent opacity-0 shadow-[0_0_10px_1px_rgba(232,163,61,0.7)] motion-safe:animate-rc-sweep"
             />
 
             <dl className="font-mono text-[13.5px]">

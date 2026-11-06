@@ -1,3 +1,5 @@
+// Komponententests für ListView: Leerzustand, Sortierung, Filter, Pagination und das Zurückspringen auf Seite 1 bei Filterwechsel.
+
 import { describe, expect, it } from "vitest";
 import { makeUi } from "../test/builds";
 import { renderWithClient } from "../test/renderWithClient";

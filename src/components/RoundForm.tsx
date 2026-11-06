@@ -1,3 +1,5 @@
+// Formular für Runden (React Hook Form und Zod). Arbeitet im Neu- oder Bearbeiten-Modus, je nachdem, ob editing gesetzt ist.
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useConfig, useCreateRound, useUpdateRound } from "../api/queries";

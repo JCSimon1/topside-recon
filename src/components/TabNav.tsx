@@ -1,3 +1,5 @@
+// Generische Tab-Leiste (<T extends string>). Bekommt Tabs, aktiven Tab und onChange, hält selbst keinen State.
+
 export interface Tab<T extends string> {
   id: T;
   label: string;

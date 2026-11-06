@@ -1,3 +1,5 @@
+// Tabelle von Runden. onSelect, onEdit und onDelete sind optional, die jeweilige Funktion erscheint nur, wenn der Aufrufer sie übergibt.
+
 import type { Round } from "../api/types";
 import { fmtDate, fmtMoney, fmtXP } from "../lib/format";
 import HoldButton from "./HoldButton";

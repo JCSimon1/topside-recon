@@ -1,3 +1,5 @@
+// Button mit den Varianten primary und ghost. Reicht alle nativen Button-Props durch, Standard-type ist button.
+
 import type { ButtonHTMLAttributes } from "react";
 
 const variants = {

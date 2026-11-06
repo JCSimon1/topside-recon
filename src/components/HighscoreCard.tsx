@@ -1,3 +1,5 @@
+// Zeigt die beste Runde nach Geld oder XP und eine aufklappbare Top-Liste. Einträge öffnen optional den Round Report.
+
 import { useState } from "react";
 import type { Round } from "../api/types";
 import { fmtDate, fmtMoney, fmtXP } from "../lib/format";

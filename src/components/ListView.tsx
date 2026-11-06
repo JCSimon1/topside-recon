@@ -1,3 +1,5 @@
+// Tab “Übersicht”: alle Runden mit Filtern (Map, Condition, Monat), Pagination und Round Report.
+
 import { useState } from "react";
 import { useConfig, useDeleteRound, useRounds } from "../api/queries";
 import type { Round } from "../api/types";

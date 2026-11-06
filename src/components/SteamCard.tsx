@@ -1,3 +1,5 @@
+// Zeigt Steam-Name, Avatar und Status-Punkt. Blendet sich aus, wenn Steam nicht konfiguriert ist oder der Abruf fehlschlägt.
+
 import { useSteamProfile } from "../api/queries";
 import { steamStatusDot, steamStatusLabel } from "../lib/steam";
 

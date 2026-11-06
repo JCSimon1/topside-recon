@@ -1,3 +1,5 @@
+//  Button, der gedrückt gehalten werden muss (Standard 1 s), um die Aktion auszulösen. Füllanimation, Pointer- und Tastatur-Unterstützung. Wird für Löschen genutzt.
+
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface HoldButtonProps {

@@ -1,3 +1,5 @@
+// Parallax-Karte mit Neigung, Glanz und Lichtreflex, die dem Mauszeiger folgt. Berücksichtigt prefers-reduced-motion. Basis für die Trophy-Karten.
+
 import Tilt from "react-parallax-tilt";
 import {
   useEffect,

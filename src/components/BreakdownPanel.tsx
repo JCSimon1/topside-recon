@@ -1,3 +1,5 @@
+// Panel mit Umschalter (Map, Condition, Monat), Balkendiagramm und Tabelle aus denselben Daten.
+
 import { useState } from "react";
 import type { Round } from "../api/types";
 import { fmtMoney, fmtXP } from "../lib/format";

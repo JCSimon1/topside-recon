@@ -1,3 +1,5 @@
+// Formularfeld-Wrapper aus Label, Eingabeelement (children) und optionaler Fehlermeldung.
+
 import type { ReactNode } from "react";
 
 interface FieldProps {

@@ -1,3 +1,5 @@
+// Kennzahl-Karte mit Label und Wert. Farbton über tone (default, accent, negative, teal).
+
 const tones = {
   default: "text-text",
   accent: "text-accent",

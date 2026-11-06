@@ -1,3 +1,5 @@
+// Recharts-Balkendiagramm mit zwei Serien (Ø $ und Ø XP) auf zwei Y-Achsen und eigenem Tooltip.
+
 import {
   Bar,
   BarChart,

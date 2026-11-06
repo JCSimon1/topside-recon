@@ -1,3 +1,5 @@
+// Pie-Chart mit gleichem Winkel pro Segment und Radius nach Wert. Eigene Legende und Tooltip mit Prozentanteil.
+
 import {
   Cell,
   Pie,

@@ -1,3 +1,6 @@
+// Leiste unter dem Header mit der Rang-Karte (Rangname und schwebendes Icon aus useSettings).
+// Bindet die SteamCard ein.
+
 import { useSettings } from "../api/queries";
 import SteamCard from "./SteamCard";
 

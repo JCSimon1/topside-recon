@@ -1,3 +1,5 @@
+// Container mit Hintergrund, Rahmen, Padding und optionalem Titel. Nimmt beliebige children auf.
+
 import type { ReactNode } from "react";
 
 interface PanelProps {

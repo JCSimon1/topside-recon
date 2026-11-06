@@ -1,3 +1,5 @@
+// Tabellenzeile eines Items. Der Mengen-Entwurf liegt lokal und wird mit 400 ms Debounce gespeichert. Ohne Eingabe zeigt die Zeile immer den Server-Wert.
+
 import { useEffect, useState } from "react";
 import { useSaveLootAmount } from "../api/queries";
 import type { LootItem } from "../api/types";
@@ -26,7 +28,7 @@ export default function LootRow({ item }: LootRowProps) {
   }, [draft, item.key, mutate]);
 
   return (
-    <tr className="border-b border-border-soft font-mono last:border-b-0 hover:scale-[1.03] hover:z-[2] hover:bg-[#f7882f]/10 position:relative transition-transform duration-200">
+    <tr className="border-b border-border-soft font-mono last:border-b-0 hover:scale-[1.03] hover:z-2 hover:bg-[#f7882f]/10 position:relative transition-transform duration-200">
       <td className="px-2.5 py-2.5 font-sans">{item.name}</td>
       <td className="px-2.5 py-2.5 text-right text-positive">
         {fmtMoney(item.price)}
@@ -38,7 +40,7 @@ export default function LootRow({ item }: LootRowProps) {
           step={1}
           value={amount}
           onChange={(e) => setDraft(Math.max(0, Number(e.target.value) || 0))}
-          className="w-[90px] rounded-sm border border-border bg-panel-alt px-2 py-1.5 text-right text-[13.5px] outline-none focus:border-accent-2"
+          className="w-22.5 rounded-sm border border-border bg-panel-alt px-2 py-1.5 text-right text-[13.5px] outline-none focus:border-accent-2"
         />
       </td>
       <td className="px-2.5 py-2.5 text-right text-positive">

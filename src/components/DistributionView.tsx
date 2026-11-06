@@ -1,3 +1,5 @@
+// Tab “Verteilung”: Kennzahl-Umschalter ($, XP, Runden) und zwei Charts, nach Map und nach Condition.
+
 import { useState } from "react";
 import { useConfig, useRounds } from "../api/queries";
 import { fmtMoney, fmtXP } from "../lib/format";

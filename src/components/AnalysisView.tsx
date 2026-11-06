@@ -1,3 +1,5 @@
+// Tab “Auswertung”: sechs Stat-Cards, zwei Highscore-Karten und das Aufschlüsselungs-Panel.
+
 import { useState } from "react";
 import { useConfig, useRounds } from "../api/queries";
 import type { Round } from "../api/types";

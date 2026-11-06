@@ -1,3 +1,5 @@
+// Tab “Profil”: Rang-Auswahl mit Vorschaubild. Nutzt das optimistische Update von useSaveRank.
+
 import { useSaveRank, useSettings } from "../api/queries";
 import Panel from "./Panel";
 

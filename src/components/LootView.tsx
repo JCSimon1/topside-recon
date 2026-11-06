@@ -1,3 +1,5 @@
+// Tab “Loot”: Gesamtwert des Stash und Tabelle aller Loot-Items.
+
 import { useLoot } from "../api/queries";
 import { lootTotal } from "../lib/loot";
 import { fmtMoney } from "../lib/format";

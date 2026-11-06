@@ -1,4 +1,5 @@
-// src/components/Modal.tsx
+// Modal per Portal an document.body. Schließt per Escape und Klick auf den Hintergrund.
+
 import { useEffect, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 

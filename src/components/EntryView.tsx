@@ -1,3 +1,5 @@
+// Tab “Erfassen”: Formular zum Anlegen oder Bearbeiten und Tabelle der letzten Runden. Löschen, Bearbeiten und Round Report sind hier angebunden. Den Bearbeiten-Zustand bekommt sie von App.
+
 import { useState } from "react";
 import { useConfig, useDeleteRound, useRounds } from "../api/queries";
 import type { Round } from "../api/types";

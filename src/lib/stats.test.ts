@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import type { Round } from "../api/types";
-import { breakdownBy, groupBy, statsFor, topRounds } from "./stats";
+import { 
+  breakdownBy,
+  groupBy,
+  keyFor,
+  sortBreakdown,
+  statsFor,
+  topRounds,
+  type Breakdown,
+ } from "./stats";
 
 const round = (overrides: Partial<Round> = {}): Round => ({
   id: 1,
@@ -13,6 +21,17 @@ const round = (overrides: Partial<Round> = {}): Round => ({
   xp: 0,
   ...overrides,
 });
+
+const row = (overrides: Partial<Breakdown> = {}): Breakdown => ({
+  key: 'A',
+  count: 1,
+  deaths: 0,
+  totalMoney: 0,
+  totalXP: 0,
+  avgMoney: 0,
+  avgXP: 0,
+  ...overrides,
+})
 
 describe("statsFor", () => {
   it("returns zeros for an empty list", () => {
@@ -98,3 +117,66 @@ describe("breakdownBy", () => {
     expect(a.avgMoney).toBe(200);
   });
 });
+
+describe('keyFor', () => {
+  it('uses the map name', () => {
+    expect(keyFor.map(round({ map: 'Spaceport' }))).toBe('Spaceport')
+  })
+
+  it('replaces an empty map with a dash', () => {
+    expect(keyFor.map(round({ map: '' }))).toBe('—')
+  })
+
+  it('uses the condition name', () => {
+    expect(keyFor.condition(round({ condition: 'Night Raid' }))).toBe(
+      'Night Raid',
+    )
+  })
+
+  it('replaces an empty condition with a dash', () => {
+    expect(keyFor.condition(round({ condition: '' }))).toBe('—')
+  })
+
+  it('uses year and month for the month key', () => {
+    expect(keyFor.month(round({ date: '2026-02-20' }))).toBe('2026-02')
+  })
+})
+
+describe('sortBreakdown', () => {
+  const rows = [
+    row({ key: '2026-01', totalMoney: 500 }),
+    row({ key: '2026-03', totalMoney: 100 }),
+    row({ key: '2026-02', totalMoney: 900 }),
+  ]
+
+  it('sorts map and condition by total money, highest first', () => {
+    expect(sortBreakdown(rows, 'map').map((r) => r.key)).toEqual([
+      '2026-02',
+      '2026-01',
+      '2026-03',
+    ])
+    expect(sortBreakdown(rows, 'condition').map((r) => r.key)).toEqual([
+      '2026-02',
+      '2026-01',
+      '2026-03',
+    ])
+  })
+
+  it('sorts months chronologically, newest first', () => {
+    expect(sortBreakdown(rows, 'month').map((r) => r.key)).toEqual([
+      '2026-03',
+      '2026-02',
+      '2026-01',
+    ])
+  })
+
+  it('does not mutate the input', () => {
+    const copy = [...rows]
+    sortBreakdown(rows, 'month')
+    expect(rows).toEqual(copy)
+  })
+
+  it('returns an empty array for empty input', () => {
+    expect(sortBreakdown([], 'map')).toEqual([])
+  })
+})

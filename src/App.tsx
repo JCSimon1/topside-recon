@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { tabs, type View } from "./lib/views";
 import type { Round } from "./api/types";
+import AnalysisView from "./components/AnalysisView";
 import EntryView from "./components/EntryView";
 import Header from "./components/Header";
 import ListView from "./components/ListView";
@@ -29,7 +30,7 @@ export default function App() {
   };
 
   return (
-    <div className="mx-auto max-w-[1240px] px-5 pt-7 pb-20">
+    <div className="mx-auto max-w-310 px-5 pt-7 pb-20">
       <Header />
 
       <ProfileBar />
@@ -45,11 +46,7 @@ export default function App() {
           />
         )}
         {view === "list" && <ListView onEdit={startEdit} />}
-        {view === "analysis" && (
-          <Panel title="Analyse">
-            <p>Inhalt folgt</p>
-          </Panel>
-        )}
+        {view === "analysis" && <AnalysisView />}
         {view === "distribution" && (
           <Panel title="Verteilung">
             <p>Inhalt folgt</p>

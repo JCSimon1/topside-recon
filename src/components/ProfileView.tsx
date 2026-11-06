@@ -25,7 +25,7 @@ export default function ProfileView() {
           <select
             value={settings.rank ?? ""}
             onChange={(e) => saveRank(e.target.value || null)}
-            className="min-w-[200px] cursor-pointer rounded-sm border border-border bg-panel-alt px-2.5 py-2 text-[13.5px] font-medium outline-none focus:border-accent-2"
+            className="min-w-50 cursor-pointer rounded-sm border border-border bg-panel-alt px-2.5 py-2 text-[13.5px] font-medium outline-none focus:border-accent-2"
           >
             <option value="">Rang wählen…</option>
             {settings.ranks.map((r) => (

@@ -10,6 +10,19 @@ export interface Stats {
   avgXP: number;
 }
 
+export type BreakdownDim = "map" | "condition" | "month";
+
+export const keyFor: Record<BreakdownDim, (r: Round) => string> = {
+  map: (r) => r.map || "—",
+  condition: (r) => r.condition || "—",
+  month: (r) => r.date.slice(0, 7),
+};
+
+export const sortBreakdown = (rows: Breakdown[], dim: BreakdownDim) =>
+  [...rows].sort((a, b) =>
+    dim === "month" ? b.key.localeCompare(a.key) : b.totalMoney - a.totalMoney,
+  );
+
 export const statsFor = (list: Round[], deathThreshold: number): Stats => {
   const count = list.length;
   const totalMoney = list.reduce((s, r) => s + r.money, 0);

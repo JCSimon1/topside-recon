@@ -1,5 +1,5 @@
-@import "./fonts.css";
-@import "tailwindcss";
+@import './fonts.css';
+@import 'tailwindcss';
 
 @theme {
   /* Areas */
@@ -34,9 +34,9 @@
 
   --radius-sm: 3px;
 
-  --font-sans: "IBM Plex Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
-  --font-display: "Barlow Condensed", sans-serif;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-display: 'Barlow Condensed', sans-serif;
 
   /* Animations / Report */
   --animate-float: float 3s ease-in-out infinite;
@@ -148,7 +148,7 @@
 
 /* Pointer-following light */
 .tilt-card-shell::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -167,7 +167,7 @@
 
 /* Subtle metallic inner edge */
 .tilt-card-shell::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 1px;
   z-index: 0;
@@ -201,7 +201,7 @@
   }
 
   body::before {
-    content: "";
+    content: '';
     position: fixed;
     inset: -15%;
     z-index: -1;

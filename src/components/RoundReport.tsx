@@ -22,12 +22,12 @@ const squadLabel: Record<Squad, string> = {
 }
 
 const badgeBase =
-  'grid size-10 place-items-center rounded-full border bg-bg/75 backdrop-blur-sm'
+  'grid size-5 place-items-center rounded-full bg-bg/5 backdrop-blur-sm'
 
 function ConditionBadge({ condition }: { condition: string }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className={`${badgeBase} border-border`} title={condition}>
+    <div className={`${badgeBase}`} title={condition}>
       {failed ? (
         <span className="font-mono text-[9px] text-text-muted">
           {condition.slice(0, 3).toUpperCase()}
@@ -135,7 +135,7 @@ export default function RoundReport({
               <img
                 src={`/images/maps/${slugify(round.map)}.webp`}
                 alt=""
-                className="size-full object-cover"
+                className="size-full object-cover [mask-image:linear-gradient(155deg,black_0%,black_20%,transparent_75%)]"
                 onError={(e) => (e.currentTarget.style.display = 'none')}
               />
               <div
@@ -154,9 +154,20 @@ export default function RoundReport({
               )}
 
               <div className="absolute right-2.5 bottom-2.5 flex gap-2">
-                <ConditionBadge condition={round.condition} />
-                {died && <SkullBadge />}
-                <div className={`${badgeBase}`} title="Squad">
+                <div className="drop-shadow-[0_0_15px_rgba(232,163,61,0.35)]">
+                  <ConditionBadge condition={round.condition} />
+                </div>
+
+                {died && (
+                  <div className="drop-shadow-[0_0_15px_rgba(232,163,61,0.35)]">
+                    <SkullBadge />
+                  </div>
+                )}
+
+                <div
+                  className={`${badgeBase} shadow-[0_0_15px_rgba(232,163,61,0.3)]`}
+                  title="Squad"
+                >
                   <span className="font-mono text-[10px] text-text-muted">
                     {squadLabel[squad]}
                   </span>

@@ -1,20 +1,29 @@
-import type { Tab } from "../components/TabNav";
+import type { Tab } from '../components/TabNav'
+import {
+  PlusCircle,
+  ChartColumn,
+  PieChart,
+  Backpack,
+  Trophy,
+  User,
+  Target,
+} from 'lucide-react'
 
 export type View =
-  | "entry"
-  | "list"
-  | "analysis"
-  | "distribution"
-  | "loot"
-  | "trophy"
-  | "settings";
+  | 'entry'
+  | 'list'
+  | 'analysis'
+  | 'distribution'
+  | 'loot'
+  | 'trophy'
+  | 'settings'
 
 export const tabs: Tab<View>[] = [
-  { id: "entry", label: "Erfassen" },
-  { id: "list", label: "Übersicht" },
-  { id: "analysis", label: "Auswertung" },
-  { id: "distribution", label: "Verteilung" },
-  { id: "loot", label: "Loot" },
-  { id: "trophy", label: "Trophy Room" },
-  { id: "settings", label: "Profil" },
-];
+  { id: 'entry', label: 'Erfassen', icon: PlusCircle },
+  { id: 'list', label: 'Übersicht', icon: Target },
+  { id: 'analysis', label: 'Auswertung', icon: ChartColumn },
+  { id: 'distribution', label: 'Verteilung', icon: PieChart },
+  { id: 'loot', label: 'Loot', icon: Backpack },
+  { id: 'trophy', label: 'Trophy Room', icon: Trophy },
+  { id: 'settings', label: 'Profil', icon: User },
+]

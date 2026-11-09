@@ -19,7 +19,7 @@ export default function TrophyTest() {
       {open && (
         <Modal onClose={() => setOpen(false)}>
           <TiltCard className="rounded-xl border-gray-700 bg-gray-950 p-3 shadow-xl">
-            <div className="flex h-105   w-75 flex-col items-center justify-between rounded-md border border-tier-platinum/60 bg-panel p-6 text-center">
+            <div className="flex h-105 w-75 flex-col items-center justify-between rounded-md border border-tier-platinum/60 bg-panel p-6 text-center">
               <Panel>
                 <SteamCard />
               </Panel>

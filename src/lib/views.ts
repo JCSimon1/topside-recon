@@ -9,14 +9,16 @@ export type View =
   | 'trophy'
   | 'settings'
   | 'loadout'
+  | 'i18n'
 
 export const tabs: Tab<View>[] = [
-  { id: 'entry', label: 'Erfassen', icon: 'add' },
-  { id: 'list', label: 'Übersicht', icon: 'list' },
-  { id: 'analysis', label: 'Auswertung', icon: 'chart' },
-  { id: 'distribution', label: 'Verteilung', icon: 'pie' },
-  { id: 'loot', label: 'Loot', icon: 'loot' },
-  { id: 'trophy', label: 'Trophy Room', icon: 'trophy' },
-  { id: 'settings', label: 'Profil', icon: 'user' },
-  { id: 'loadout', label: 'Loadout', icon: 'construction' },
+  { id: 'entry', labelKey: 'navigation.entry', icon: 'add' },
+  { id: 'list', labelKey: 'navigation.list', icon: 'list' },
+  { id: 'analysis', labelKey: 'navigation.analysis', icon: 'chart' },
+  { id: 'distribution', labelKey: 'navigation.distribution', icon: 'pie' },
+  { id: 'loot', labelKey: 'navigation.loot', icon: 'loot' },
+  { id: 'trophy', labelKey: 'navigation.trophy', icon: 'trophy' },
+  { id: 'settings', labelKey: 'navigation.settings', icon: 'user' },
+  { id: 'loadout', labelKey: 'navigation.loadout', icon: 'construction' },
+  { id: 'i18n', labelKey: 'navigation.i18nTestPage', icon: 'construction' },
 ]

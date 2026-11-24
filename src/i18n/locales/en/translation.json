@@ -1,0 +1,156 @@
+{
+  "common": {
+    "abort": "Abort",
+    "amount": "Amount",
+    "back": "Back",
+    "cancel": "Cancel",
+    "change": "Change",
+    "close": "Close",
+    "condition": "Condition",
+    "confirm": "Confirm",
+    "date": "Date",
+    "delete": "Delete",
+    "edit": "Edit",
+    "error": "Error",
+    "item": "Item",
+    "loading": "Loading...",
+    "map": "Map",
+    "monthly": "Monthly",
+    "next": "Next",
+    "no": "No",
+    "noData": "No data",
+    "number": "Number",
+    "numberAbrr": "No.",
+    "of": "of",
+    "page": "page",
+    "price": "Price",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "search": "Search",
+    "sum": "Sum",
+    "time": "Time",
+    "yes": "Yes"
+  },
+  "button": {
+    "holdToDelete": "Hold button to delete"
+  },
+  "navigation": {
+    "entry": "New Raid",
+    "list": "Raid Log",
+    "analysis": "Analysis",
+    "distribution": "Distribution",
+    "loot": "Loot",
+    "loadout": "Loadout",
+    "trophy": "Trophies",
+    "settings": "Settings",
+    "i18nTestPage": "i18n Test Page"
+  },
+  "header": {
+    "title": "Topside Recon",
+    "subtitle": "ARC Raiders Statistics & Tracking"
+  },
+  "profile": {
+    "title": "Player Profile",
+    "level": "Level",
+    "experience": "Experience",
+    "settings": "Profile Settings",
+    "noRank": "No rank selected",
+    "rank": "Rank"
+  },
+  "entry": {
+    "actions": {
+      "new": "New Raid",
+      "save": "Save Raid",
+      "update": "Update Raid"
+    },
+    "editRound": "Runde bearbeiten",
+    "fields": {
+      "map": "Map",
+      "duration": "Duration",
+      "survival": "Survived",
+      "extraction": "Extraction"
+    },
+    "lastRounds": "Last rounds",
+    "newRound": "Log a new round",
+    "title": "Enter raid"
+  },
+  "list": {
+    "allConditions": "All Conditions",
+    "allMaps": "All maps",
+    "allRounds": "All rounds",
+    "columns": {
+      "date": "Date",
+      "map": "Map",
+      "duration": "Duration",
+      "result": "Result"
+    },
+    "empty": "No raids recorded yet",
+    "resetFilters": "Reset filters",
+    "title": "Raid History"
+  },
+  "analysis": {
+    "title": "Raid Analysis",
+    "stats": {
+      "totalRaids": "Total Raids",
+      "totalMoney": "Total $",
+      "totalXp": "Total XP",
+      "avgMoneyPerRound": "Ø $ per round",
+      "avgXpPerRound": "Ø XP per round",
+      "highscoreMoney": "Highscore $",
+      "highscoreXp": "Highscore XP",
+      "successfulRaids": "Successful Raids",
+      "survivalRate": "Survival Rate",
+      "averageDuration": "Average Duration",
+      "deaths": "Deaths",
+      "rounds": "Rounds"
+    },
+    "highscore": {
+      "hideTopN": "Hide Top Runs",
+      "showTopN": "Show Top Runs"
+    }
+  },
+  "round": {
+    "xpReceived": "XP received",
+    "moneyReceived": "$ received",
+    "saveRound": "Save round"
+  },
+  "distribution": {
+    "title": "Distribution",
+    "byMap": "by Map",
+    "byCondition": "by Condition"
+  },
+  "loot": {
+    "title": "Loot Overview",
+    "totalStash": "Stash value"
+  },
+  "loadout": {
+    "title": "Loadout"
+  },
+  "trophy": {
+    "title": "Trophies"
+  },
+  "settings": {
+    "language": {
+      "title": "Language",
+      "languageDescription": "Choose your preferred language"
+    },
+    "rank": {
+      "title": "Trials Rank",
+      "selectRank": "Select rank"
+    }
+  },
+  "testPage": {
+    "title": "Internationalization Test",
+    "subtitle": "Testing multilingual support in Topside Recon",
+    "welcome": "Welcome to Topside Recon",
+    "description": "This is a test page for English and German translations.",
+    "actions": {
+      "switchLanguage": "Switch language"
+    },
+    "stats": {
+      "totalRaids": "Total Raids",
+      "successfulRaids": "Successful Raids",
+      "survivalRate": "Survival Rate"
+    }
+  }
+}

@@ -1,68 +1,75 @@
 // Tab “Übersicht”: alle Runden mit Filtern (Map, Condition, Monat), Pagination und Round Report.
 
-import { useState } from "react";
-import { useConfig, useDeleteRound, useRounds } from "../api/queries";
-import type { Round } from "../api/types";
+import { useState } from 'react'
+import { useConfig, useDeleteRound, useRounds } from '../api/queries'
+import { useTranslation } from 'react-i18next'
+import type { Round } from '../api/types'
 import {
   filterRounds,
   paginate,
   sortRounds,
   uniqueSorted,
   type RoundFilter,
-} from "../lib/rounds";
-import Button from "./Button";
-import Panel from "./Panel";
-import RoundReport from "./RoundReport";
-import RoundsTable from "./RoundsTable";
+} from '../lib/rounds'
+import Button from './Button'
+import Panel from './Panel'
+import RoundReport from './RoundReport'
+import RoundsTable from './RoundsTable'
 
-const emptyFilter: RoundFilter = { map: "", condition: "", month: "" };
+const emptyFilter: RoundFilter = { map: '', condition: '', month: '' }
 const selectClass =
-  "rounded-sm border border-border bg-panel-alt px-2.5 py-1.5 text-[13px] text-text outline-none focus:border-accent-2";
+  'rounded-sm border border-border bg-panel-alt px-2.5 py-1.5 text-[13px] text-text outline-none focus:border-accent-2'
 
 interface ListViewProps {
-  onEdit?: (round: Round) => void;
+  onEdit?: (round: Round) => void
 }
 
 export default function ListView({ onEdit }: ListViewProps) {
-  const { data: rounds, isPending, error } = useRounds();
-  const { data: config } = useConfig();
-  const { mutate: deleteRound } = useDeleteRound();
-  const [filter, setFilter] = useState<RoundFilter>(emptyFilter);
-  const [page, setPage] = useState(1);
-  const [selected, setSelected] = useState<Round | null>(null);
+  const { data: rounds, isPending, error } = useRounds()
+  const { data: config } = useConfig()
+  const { mutate: deleteRound } = useDeleteRound()
+  const [filter, setFilter] = useState<RoundFilter>(emptyFilter)
+  const [page, setPage] = useState(1)
+  const [selected, setSelected] = useState<Round | null>(null)
+  const { t } = useTranslation()
 
-  if (isPending) return <p>Lade…</p>;
-  if (error) return <p className="text-negative">Fehler: {error.message}</p>;
+  if (isPending) return <p>{t('common.loading')}</p>
+  if (error)
+    return (
+      <p className="text-negative">
+        {t('common.error')}: {error.message}
+      </p>
+    )
 
   const handleDelete = (round: Round) => {
     deleteRound(round.id, {
       onSuccess: () => {
-        if (selected?.id === round.id) setSelected(null);
+        if (selected?.id === round.id) setSelected(null)
       },
-    });
-  };
+    })
+  }
   const update = (patch: Partial<RoundFilter>) => {
-    setFilter((f) => ({ ...f, ...patch }));
-    setPage(1);
-  };
+    setFilter((f) => ({ ...f, ...patch }))
+    setPage(1)
+  }
 
-  const filtered = sortRounds(filterRounds(rounds, filter));
+  const filtered = sortRounds(filterRounds(rounds, filter))
   const {
     items,
     page: current,
     totalPages,
-  } = paginate(filtered, page, config?.ui.listPageSize ?? 20);
+  } = paginate(filtered, page, config?.ui.listPageSize ?? 20)
 
   return (
     <>
-      <Panel title="Alle Runden">
+      <Panel title={t('list.allRounds')}>
         <div className="mb-4 flex flex-wrap gap-2.5">
           <select
             className={selectClass}
             value={filter.map}
             onChange={(e) => update({ map: e.target.value })}
           >
-            <option value="">Alle Maps</option>
+            <option value="">{t('list.allMaps')}</option>
             {uniqueSorted(rounds.map((r) => r.map)).map((m) => (
               <option key={m} value={m}>
                 {m}
@@ -74,7 +81,7 @@ export default function ListView({ onEdit }: ListViewProps) {
             value={filter.condition}
             onChange={(e) => update({ condition: e.target.value })}
           >
-            <option value="">Alle Conditions</option>
+            <option value="">{t('list.allConditions')}</option>
             {uniqueSorted(rounds.map((r) => r.condition)).map((c) => (
               <option key={c} value={c}>
                 {c}
@@ -90,11 +97,11 @@ export default function ListView({ onEdit }: ListViewProps) {
           <Button
             variant="ghost"
             onClick={() => {
-              setFilter(emptyFilter);
-              setPage(1);
+              setFilter(emptyFilter)
+              setPage(1)
             }}
           >
-            Filter zurücksetzen
+            {t('list.resetFilters')}
           </Button>
         </div>
 
@@ -111,17 +118,17 @@ export default function ListView({ onEdit }: ListViewProps) {
             disabled={current <= 1}
             onClick={() => setPage(current - 1)}
           >
-            ← Zurück
+            ← {t('common.back')}
           </Button>
           <span className="font-mono text-xs text-text-muted">
-            Seite {current} von {totalPages}
+            {t('common.page')} {current} {t('common.of')} {totalPages}
           </span>
           <Button
             variant="ghost"
             disabled={current >= totalPages}
             onClick={() => setPage(current + 1)}
           >
-            Weiter →
+            {t('common.next')} →
           </Button>
         </div>
       </Panel>
@@ -133,12 +140,12 @@ export default function ListView({ onEdit }: ListViewProps) {
           onEdit={
             onEdit &&
             ((r) => {
-              setSelected(null);
-              onEdit(r);
+              setSelected(null)
+              onEdit(r)
             })
           }
         />
       )}
     </>
-  );
+  )
 }

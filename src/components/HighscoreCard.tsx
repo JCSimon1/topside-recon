@@ -1,14 +1,15 @@
 // Zeigt die beste Runde nach Geld oder XP und eine aufklappbare Top-Liste. Einträge öffnen optional den Round Report.
 
-import { useState } from "react";
-import type { Round } from "../api/types";
-import { fmtDate, fmtMoney, fmtXP } from "../lib/format";
+import { useState } from 'react'
+import type { Round } from '../api/types'
+import { fmtDate, fmtMoney, fmtXP } from '../lib/format'
+import { useTranslation } from 'react-i18next'
 
 interface HighscoreCardProps {
-  title: string;
-  metric: "money" | "xp";
-  rounds: Round[]; // bereits sortiert, beste zuerst
-  onSelect?: (round: Round) => void;
+  title: string
+  metric: 'money' | 'xp'
+  rounds: Round[] // bereits sortiert, beste zuerst
+  onSelect?: (round: Round) => void
 }
 
 export default function HighscoreCard({
@@ -17,9 +18,10 @@ export default function HighscoreCard({
   rounds,
   onSelect,
 }: HighscoreCardProps) {
-  const [open, setOpen] = useState(false);
-  const fmt = metric === "money" ? fmtMoney : fmtXP;
-  const best = rounds[0];
+  const [open, setOpen] = useState(false)
+  const fmt = metric === 'money' ? fmtMoney : fmtXP
+  const best = rounds[0]
+  const { t } = useTranslation()
 
   return (
     <div className="rounded-sm border border-border bg-panel p-4">
@@ -39,7 +41,9 @@ export default function HighscoreCard({
             onClick={() => setOpen((o) => !o)}
             className="mt-3 cursor-pointer text-xs text-text-faint hover:text-accent"
           >
-            {open ? "Top-Liste ausblenden" : "Top-Liste anzeigen"}
+            {open
+              ? t('analysis.highscore.hideTopN')
+              : t('analysis.highscore.showTopN')}
           </button>
           {open && (
             <ol className="mt-2 flex flex-col gap-1 font-mono text-[14px]">
@@ -47,7 +51,7 @@ export default function HighscoreCard({
                 <li
                   key={r.id}
                   onClick={() => onSelect?.(r)}
-                  className={`flex justify-between gap-4 ${onSelect ? "cursor-pointer hover:text-accent" : ""}`}
+                  className={`flex justify-between gap-4 ${onSelect ? 'cursor-pointer hover:text-accent' : ''}`}
                 >
                   <span className="text-text-faint text-left">{i + 1}.</span>
                   <span className="flex-1 truncate font-sans text-right">
@@ -69,5 +73,5 @@ export default function HighscoreCard({
         <div className="mt-2 text-text-faint">Keine Daten</div>
       )}
     </div>
-  );
+  )
 }

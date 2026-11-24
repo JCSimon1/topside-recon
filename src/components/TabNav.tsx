@@ -2,11 +2,12 @@
 // Verwendet React-Komponente von Lucide für die Tab Icons
 
 import type { IconName } from '../lib/icons'
+import { useTranslation } from 'react-i18next'
 import Icon from './ui/Icon'
 
 export interface Tab<T extends string> {
   id: T
-  label: string
+  labelKey: string
   icon?: IconName
 }
 
@@ -21,12 +22,13 @@ export default function TabNav<T extends string>({
   active,
   onChange,
 }: TabNavProps<T>) {
+  const { t } = useTranslation()
   return (
     <nav
       aria-label="Hauptnavigation"
       className="mb-6 flex gap-6 overflow-x-auto border-b border-border"
     >
-      {tabs.map(({ id, label, icon }) => {
+      {tabs.map(({ id, labelKey, icon }) => {
         const isActive = active === id
         return (
           <button
@@ -41,7 +43,7 @@ export default function TabNav<T extends string>({
             }`}
           >
             {icon && <Icon name={icon} />}
-            {label}
+            {t(labelKey)}
           </button>
         )
       })}

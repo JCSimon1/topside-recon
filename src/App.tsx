@@ -11,6 +11,7 @@ import ProfileBar from './components/ProfileBar'
 import ProfileView from './components/ProfileView'
 import TabNav from './components/TabNav'
 import TrophyTest from './components/TrophyTest'
+import { I18nTest } from './pages/I18nTestPage'
 
 export default function App() {
   const [view, setView] = useState<View>('entry')
@@ -52,6 +53,7 @@ export default function App() {
         {view === 'trophy' && <TrophyTest />}
         {view === 'settings' && <ProfileView />}
         {view === 'loadout'}
+        {view === 'i18n' && <I18nTest />}
       </main>
     </div>
   )

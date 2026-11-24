@@ -1,23 +1,25 @@
 // Leiste unter dem Header mit der Rang-Karte (Rangname und schwebendes Icon aus useSettings).
 // Bindet die SteamCard ein.
 
-import { useSettings } from "../api/queries";
-import SteamCard from "./SteamCard";
+import { useSettings } from '../api/queries'
+import SteamCard from './SteamCard'
+import { useTranslation } from 'react-i18next'
 
 export default function ProfileBar() {
-  const { data: settings } = useSettings();
+  const { data: settings } = useSettings()
+  const { t } = useTranslation()
 
-  const rankKey = settings?.rank ?? null;
+  const rankKey = settings?.rank ?? null
   const rankName = rankKey
     ? (settings?.ranks.find((r) => r.key === rankKey)?.name ?? rankKey)
-    : "Kein Rang gewählt";
+    : t('profile.noRank')
 
   return (
     <div className="mb-6 flex flex-wrap items-stretch justify-end rounded-sm border border-border bg-panel px-4 py-2.5">
       <div className="flex items-center gap-3 px-3.5">
         <div className="flex flex-col items-end gap-0.5 text-right">
           <div className="font-mono text-[10px] tracking-wide text-text-faint">
-            RANG
+            {t('profile.rank')}
           </div>
           <div className="font-display text-[15px] leading-tight font-semibold">
             {rankName}
@@ -28,11 +30,11 @@ export default function ProfileBar() {
             src={`/images/ranks/${rankKey}.webp`}
             alt=""
             className="size-14 shrink-0 animate-float object-contain drop-shadow-[0_0_8px_rgba(232,163,61,0.25)]"
-            onError={(e) => (e.currentTarget.style.visibility = "hidden")}
+            onError={(e) => (e.currentTarget.style.visibility = 'hidden')}
           />
         )}
         <SteamCard />
       </div>
     </div>
-  );
+  )
 }

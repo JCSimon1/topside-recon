@@ -7,13 +7,14 @@ import {
   ResponsiveContainer,
   Tooltip,
   type TooltipContentProps,
-} from "recharts";
-import type { Slice } from "../lib/stats";
+} from 'recharts'
+import { useTranslation } from 'react-i18next'
+import type { Slice } from '../lib/stats'
 
 interface DistributionPieProps {
-  slices: Slice[];
-  colors: string[];
-  format: (n: number) => string;
+  slices: Slice[]
+  colors: string[]
+  format: (n: number) => string
 }
 
 export default function DistributionPie({
@@ -21,19 +22,21 @@ export default function DistributionPie({
   colors,
   format,
 }: DistributionPieProps) {
+  const { t } = useTranslation()
+
   if (slices.length === 0) {
     return (
       <div className="py-9 text-center font-mono text-[13px] text-text-faint">
-        Keine Daten
+        {t('common.noData')}
       </div>
-    );
+    )
   }
 
-  const total = slices.reduce((s, x) => s + x.value, 0);
+  const total = slices.reduce((s, x) => s + x.value, 0)
 
   function SliceTooltip({ active, payload }: TooltipContentProps) {
-    if (!active || !payload?.length) return null;
-    const s = payload[0].payload as Slice;
+    if (!active || !payload?.length) return null
+    const s = payload[0].payload as Slice
     return (
       <div className="rounded-sm border border-border bg-panel px-3 py-2 font-mono text-xs shadow-lg">
         <div className="mb-1 font-display text-sm font-semibold">{s.name}</div>
@@ -42,7 +45,7 @@ export default function DistributionPie({
           {Math.round((s.value / total) * 100)} %
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -82,5 +85,5 @@ export default function DistributionPie({
         ))}
       </ul>
     </div>
-  );
+  )
 }

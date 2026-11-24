@@ -1,39 +1,44 @@
 // Panel mit Umschalter (Map, Condition, Monat), Balkendiagramm und Tabelle aus denselben Daten.
 
-import { useState } from "react";
-import type { Round } from "../api/types";
-import { fmtMoney, fmtXP } from "../lib/format";
+import { useState } from 'react'
+import type { Round } from '../api/types'
+import { fmtMoney, fmtXP } from '../lib/format'
+import { useTranslation } from 'react-i18next'
 import {
   breakdownBy,
   keyFor,
   sortBreakdown,
   type BreakdownDim,
-} from "../lib/stats";
-import BreakdownChart from "./BreakdownChart";
-import Panel from "./Panel";
-
-const dims: { id: BreakdownDim; label: string; column: string }[] = [
-  { id: "map", label: "Pro Map", column: "Map" },
-  { id: "condition", label: "Pro Condition", column: "Condition" },
-  { id: "month", label: "Monatlich", column: "Monat" },
-];
+} from '../lib/stats'
+import BreakdownChart from './BreakdownChart'
+import Panel from './Panel'
 
 interface BreakdownPanelProps {
-  rounds: Round[];
-  deathThreshold: number;
+  rounds: Round[]
+  deathThreshold: number
 }
 
 export default function BreakdownPanel({
   rounds,
   deathThreshold,
 }: BreakdownPanelProps) {
-  const [dim, setDim] = useState<BreakdownDim>("map");
+  const [dim, setDim] = useState<BreakdownDim>('map')
+  const { t } = useTranslation()
+  const dims: { id: BreakdownDim; label: string; column: string }[] = [
+    { id: 'map', label: t('distribution.byMap'), column: 'Map' },
+    {
+      id: 'condition',
+      label: t('distribution.byCondition'),
+      column: 'Condition',
+    },
+    { id: 'month', label: t('common.monthly'), column: 'Monat' },
+  ]
 
   const rows = sortBreakdown(
     breakdownBy(rounds, keyFor[dim], deathThreshold),
     dim,
-  );
-  const column = dims.find((d) => d.id === dim)?.column;
+  )
+  const column = dims.find((d) => d.id === dim)?.column
 
   return (
     <Panel>
@@ -45,8 +50,8 @@ export default function BreakdownPanel({
             onClick={() => setDim(d.id)}
             className={`cursor-pointer rounded-sm border px-3 py-1.5 text-[13px] font-medium ${
               dim === d.id
-                ? "border-accent text-accent"
-                : "border-border bg-panel-alt text-text-muted hover:text-text"
+                ? 'border-accent text-accent'
+                : 'border-border bg-panel-alt text-text-muted hover:text-text'
             }`}
           >
             {d.label}
@@ -61,11 +66,17 @@ export default function BreakdownPanel({
           <thead>
             <tr className="border-b border-border text-left font-mono text-[11px] text-text-faint">
               <th className="px-2.5 pb-2.5 text-text">{column}</th>
-              <th className="px-2.5 pb-2.5">Runden</th>
-              <th className="px-2.5 pb-2.5">Gesamt $</th>
-              <th className="px-2.5 pb-2.5">Ø $</th>
-              <th className="px-2.5 pb-2.5">Gesamt XP</th>
-              <th className="px-2.5 pb-2.5">Ø XP</th>
+              <th className="px-2.5 pb-2.5">{t('analysis.stats.rounds')}</th>
+              <th className="px-2.5 pb-2.5">
+                {t('analysis.stats.totalMoney')}
+              </th>
+              <th className="px-2.5 pb-2.5">
+                {t('analysis.stats.avgMoneyPerRound')}
+              </th>
+              <th className="px-2.5 pb-2.5">{t('analysis.stats.totalXp')}</th>
+              <th className="px-2.5 pb-2.5">
+                {t('analysis.stats.avgXpPerRound')}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -94,5 +105,5 @@ export default function BreakdownPanel({
         </table>
       </div>
     </Panel>
-  );
+  )
 }

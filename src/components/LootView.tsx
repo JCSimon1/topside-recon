@@ -1,23 +1,30 @@
 // Tab “Loot”: Gesamtwert des Stash und Tabelle aller Loot-Items.
 
-import { useLoot } from "../api/queries";
-import { lootTotal } from "../lib/loot";
-import { fmtMoney } from "../lib/format";
-import LootRow from "./LootRow";
-import Panel from "./Panel";
+import { useLoot } from '../api/queries'
+import { lootTotal } from '../lib/loot'
+import { fmtMoney } from '../lib/format'
+import { useTranslation } from 'react-i18next'
+import LootRow from './LootRow'
+import Panel from './Panel'
 
 export default function LootView() {
-  const { data: loot, isPending, error } = useLoot();
+  const { data: loot, isPending, error } = useLoot()
+  const { t } = useTranslation()
 
-  if (isPending) return <p>Lade…</p>;
-  if (error) return <p className="text-negative">Fehler: {error.message}</p>;
+  if (isPending) return <p>{t('common.loading')}</p>
+  if (error)
+    return (
+      <p className="text-negative">
+        {t('common.error')}: {error.message}
+      </p>
+    )
 
   return (
     <div className="flex flex-col gap-4.5">
       <Panel>
         <div className="flex flex-wrap items-baseline justify-between gap-2.5">
           <div className="font-mono text-xs tracking-wide text-text-faint">
-            GESAMTWERT STASH
+            {t('loot.totalStash')}
           </div>
           <div className="font-display text-4xl font-bold text-accent">
             {fmtMoney(lootTotal(loot))}
@@ -25,14 +32,14 @@ export default function LootView() {
         </div>
       </Panel>
 
-      <Panel title="Loot Stash">
+      <Panel title={t('loot.title')}>
         <table className="w-full border-collapse text-[13px]">
           <thead>
             <tr className="border-b border-border text-left font-mono text-[11px] text-text-faint">
-              <th className="px-2.5 pb-2.5">Item</th>
-              <th className="px-2.5 pb-2.5 text-right">Preis</th>
-              <th className="px-2.5 pb-2.5 text-right">Menge</th>
-              <th className="px-2.5 pb-2.5 text-right">Summe</th>
+              <th className="px-2.5 pb-2.5">{t('common.item')}</th>
+              <th className="px-2.5 pb-2.5 text-right">{t('common.price')}</th>
+              <th className="px-2.5 pb-2.5 text-right">{t('common.amount')}</th>
+              <th className="px-2.5 pb-2.5 text-right">{t('common.sum')}</th>
             </tr>
           </thead>
           <tbody>
@@ -43,5 +50,5 @@ export default function LootView() {
         </table>
       </Panel>
     </div>
-  );
+  )
 }

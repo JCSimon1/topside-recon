@@ -135,7 +135,7 @@ export default function RoundReport({
               <img
                 src={`/images/maps/${slugify(round.map)}.webp`}
                 alt=""
-                className="size-full object-cover [mask-image:linear-gradient(155deg,black_0%,black_20%,transparent_75%)]"
+                className="size-full object-cover mask-[linear-gradient(155deg,black_0%,black_20%,transparent_75%)]"
                 onError={(e) => (e.currentTarget.style.display = 'none')}
               />
               <div

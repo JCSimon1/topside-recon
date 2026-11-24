@@ -65,14 +65,14 @@ export default function TiltCard({ children, className = '' }: TiltCardProps) {
       tiltMaxAngleX={20}
       tiltMaxAngleY={20}
       perspective={750}
-      scale={motionEnabled ? 1.02 : 1.75}
+      scale={motionEnabled ? 1.02 : 1}
       transitionSpeed={500}
       glareEnable={motionEnabled}
       glareMaxOpacity={0.3}
       glarePosition="all"
       glareColor="#ffffff"
       glareBorderRadius="6px"
-      className="h-full"
+      className="relative z-0 h-full hover:z-20"
     >
       <div
         ref={cardRef}

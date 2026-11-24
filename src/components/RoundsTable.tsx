@@ -18,6 +18,7 @@ export default function RoundsTable({
   onDelete,
   onSelect,
 }: RoundsTableProps) {
+  const { t } = useTranslation()
   if (rounds.length === 0) {
     return (
       <div className="px-5 py-9 text-center font-mono text-[13px] text-text-faint">
@@ -25,8 +26,6 @@ export default function RoundsTable({
       </div>
     )
   }
-
-  const { t } = useTranslation()
 
   return (
     <table className="w-full border-collapse text-[13px]">

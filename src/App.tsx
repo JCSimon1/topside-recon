@@ -10,7 +10,8 @@ import LootView from './components/LootView'
 import ProfileBar from './components/ProfileBar'
 import ProfileView from './components/ProfileView'
 import TabNav from './components/TabNav'
-import TrophyTest from './components/TrophyTest'
+//import TrophyTest from './components/TrophyTest'
+import TrophyRoom from './components/TrophyRoom'
 import { I18nTest } from './pages/I18nTestPage'
 
 export default function App() {
@@ -50,7 +51,7 @@ export default function App() {
         {view === 'analysis' && <AnalysisView />}
         {view === 'distribution' && <DistributionView />}
         {view === 'loot' && <LootView />}
-        {view === 'trophy' && <TrophyTest />}
+        {view === 'trophy' && <TrophyRoom />}
         {view === 'settings' && <ProfileView />}
         {view === 'loadout'}
         {view === 'i18n' && <I18nTest />}

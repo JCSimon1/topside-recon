@@ -4,6 +4,7 @@ import type { Round } from '../api/types'
 import { fmtDate, fmtMoney, fmtXP } from '../lib/format'
 import { useTranslation } from 'react-i18next'
 import HoldButton from './HoldButton'
+import MapImage from './ui/MapImage'
 
 interface RoundsTableProps {
   rounds: Round[]
@@ -53,7 +54,16 @@ export default function RoundsTable({
             <td className="px-2.5 py-2.5">{r.number}</td>
             <td className="px-2.5 py-2.5">{fmtDate(r.date)}</td>
             <td className="px-2.5 py-2.5">{r.time}</td>
-            <td className="px-2.5 py-2.5 font-sans">{r.map}</td>
+            <td className="px-2.5 py-2.5 font-sans">
+              <div className="cell-with-icon">
+                <MapImage
+                  map={r.map}
+                  version="2026-11-26"
+                  className="table-cell-image rounded-md object-cover drop-shadow-gray-700 drop-shadow-md"
+                />
+                {r.map}
+              </div>
+            </td>
             <td className="px-2.5 py-2.5 font-sans">{r.condition}</td>
             <td className="px-2.5 py-2.5 text-right text-positive">
               {fmtMoney(r.money)}

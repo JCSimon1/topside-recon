@@ -127,7 +127,42 @@
     "title": "Loadout"
   },
   "trophy": {
-    "title": "Trophies"
+    "title": "Trophies",
+    "tier": {
+      "bronze": "BRONZE",
+      "silver": "SILVER",
+      "gold": "GOLD",
+      "platinum": "PLATINUM"
+    },
+    "titles": {
+      "lucky": "The Lucky One",
+      "grinder": "The Grinder",
+      "survivor": "The Survivor"
+    },
+    "goal": "MONTHLY GOAL",
+    "empty": "No months yet. Log some runs and your collection starts here.",
+    "eyebrow": "TROPHY ROOM",
+    "inProgress": "IN PROGRESS",
+    "openHint": "Rated once the month is over.",
+    "vsPrev": "vs. previous month",
+    "runs": "RUNS",
+    "deaths": "DEATHS",
+    "survived": "SURVIVED",
+    "activeDays": "ACTIVE DAYS",
+    "bestRun": "BEST RUN",
+    "bestMap": "MOST PROFITABLE MAP",
+    "avgPerRun": "Avg {{value}} / run",
+    "favMap": "MOST PLAYED",
+    "favMapSub": "{{n}} runs",
+    "streak": "LONGEST DEATHLESS STREAK",
+    "streakValue": "{{n}} runs",
+    "bestDay": "BEST DAY",
+    "bestDaySub": "{{n}} runs",
+    "rank": "RANKING",
+    "rankValue": "{{rank}} of {{total}}",
+    "activity": "ACTIVITY",
+    "badges": "BADGES",
+    "noBadges": "No badges"
   },
   "settings": {
     "language": {

@@ -7,8 +7,9 @@ export default function Header() {
                  border-b border-border bg-cover bg-center
                  px-6 pb-4"
       style={{
-        backgroundImage: "url('/topside_recon_banner.png')",
+        backgroundImage:
+          "url('/images/misc/monthly_trophy_background_orig.webp')",
       }}
     ></header>
-  );
+  )
 }

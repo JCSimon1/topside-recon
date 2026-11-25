@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import MapImage from '../components/ui/MapImage'
 
 export function I18nTest() {
   const { t, i18n } = useTranslation()
@@ -33,6 +34,14 @@ export function I18nTest() {
         <p className="mt-2 text-sm text-gray-400">
           {t('testPage.description')}
         </p>
+      </div>
+
+      <div className="rounded-xl border border-white/10 bg-white/5 p-6">
+        <MapImage
+          map="Dam Battlegrounds"
+          version="2026-11-26"
+          className="h-30 w-60 rounded-md object-cover  drop-shadow-accent-2 drop-shadow-md"
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">

@@ -127,7 +127,42 @@
     "title": "Loadout"
   },
   "trophy": {
-    "title": "Trophäen"
+    "title": "Trophäen",
+    "tier": {
+      "bronze": "BRONZE",
+      "silver": "SILBER",
+      "gold": "GOLD",
+      "platinum": "PLATIN"
+    },
+    "titles": {
+      "lucky": "Der Glückspilz",
+      "grinder": "Der Grinder",
+      "survivor": "Der Überlebenskünstler"
+    },
+    "goal": "MONATSZIEL",
+    "empty": "Noch keine Monate vorhanden. Sobald du Runden erfasst, entsteht hier deine Sammlung.",
+    "eyebrow": "TROPHY ROOM",
+    "inProgress": "LÄUFT NOCH",
+    "openHint": "Die Wertung folgt nach Monatsende.",
+    "vsPrev": "zum Vormonat",
+    "runs": "RUNDEN",
+    "deaths": "TODE",
+    "survived": "ÜBERLEBT",
+    "activeDays": "AKTIVE TAGE",
+    "bestRun": "BEST RUN",
+    "bestMap": "PROFITABELSTE MAP",
+    "avgPerRun": "Ø {{value}} / Runde",
+    "favMap": "MEISTGESPIELT",
+    "favMapSub": "{{n}} Runden",
+    "streak": "LÄNGSTE DEATHLESS-SERIE",
+    "streakValue": "{{n}} Runden",
+    "bestDay": "BESTER TAG",
+    "bestDaySub": "{{n}} Runden",
+    "rank": "PLATZ IM RANKING",
+    "rankValue": "{{rank}} von {{total}}",
+    "activity": "AKTIVITÄT",
+    "badges": "BADGES",
+    "noBadges": "Keine Badges"
   },
   "settings": {
     "language": {

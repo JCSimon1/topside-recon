@@ -62,11 +62,11 @@ export default function TiltCard({ children, className = '' }: TiltCardProps) {
 
   return (
     <Tilt
-      tiltMaxAngleX={20}
-      tiltMaxAngleY={20}
+      tiltMaxAngleX={10}
+      tiltMaxAngleY={10}
       perspective={750}
       scale={motionEnabled ? 1.02 : 1}
-      transitionSpeed={500}
+      transitionSpeed={900}
       glareEnable={motionEnabled}
       glareMaxOpacity={0.3}
       glarePosition="all"

@@ -31,7 +31,9 @@
 
   /* Heatmap */
   --color-heat-1: #4a3a1f;
+  --color-heat-2: #7a5a2a;
   --color-heat-3: #c4892f;
+  --color-heat-4: #f0ac3f;
 
   --radius-sm: 3px;
 
@@ -185,6 +187,18 @@
 .tilt-card-content {
   position: relative;
   z-index: 1;
+}
+
+/* Table cell with image */
+.cell-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.table-cell-image {
+  height: 30px;
+  width: 60px;
 }
 
 /* Reduced motion */

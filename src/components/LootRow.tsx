@@ -1,35 +1,46 @@
 // Tabellenzeile eines Items. Der Mengen-Entwurf liegt lokal und wird mit 400 ms Debounce gespeichert. Ohne Eingabe zeigt die Zeile immer den Server-Wert.
 
-import { useEffect, useState } from "react";
-import { useSaveLootAmount } from "../api/queries";
-import type { LootItem } from "../api/types";
-import { fmtMoney } from "../lib/format";
+import { useEffect, useState } from 'react'
+import { useSaveLootAmount } from '../api/queries'
+import type { LootItem } from '../api/types'
+import { fmtMoney } from '../lib/format'
+import MapImage from '../components/ui/MapImage'
 
 interface LootRowProps {
-  item: LootItem;
+  item: LootItem
 }
 
 export default function LootRow({ item }: LootRowProps) {
-  const [draft, setDraft] = useState<number | null>(null);
-  const amount = draft ?? item.amount;
-  const { mutate } = useSaveLootAmount();
+  const [draft, setDraft] = useState<number | null>(null)
+  const amount = draft ?? item.amount
+  const { mutate } = useSaveLootAmount()
 
   useEffect(() => {
-    if (draft === null) return;
+    if (draft === null) return
 
     const timer = setTimeout(() => {
       mutate(
         { key: item.key, amount: draft },
         { onSuccess: () => setDraft((d) => (d === draft ? null : d)) },
-      );
-    }, 400);
+      )
+    }, 400)
 
-    return () => clearTimeout(timer);
-  }, [draft, item.key, mutate]);
+    return () => clearTimeout(timer)
+  }, [draft, item.key, mutate])
 
   return (
     <tr className="border-b border-border-soft font-mono last:border-b-0 hover:scale-[1.03] hover:z-2 hover:bg-[#f7882f]/10 position:relative transition-transform duration-200">
-      <td className="px-2.5 py-2.5 font-sans">{item.name}</td>
+      <td className="px-2.5 py-2.5 font-sans">
+        <div className="cell-with-icon">
+          <MapImage
+            map={item.name}
+            type="loot"
+            version="2026-11-26"
+            className="table-cell-image rounded-md border object-cover drop-shadow-gray-800 drop-shadow-md"
+          />
+          {item.name}
+        </div>
+      </td>
       <td className="px-2.5 py-2.5 text-right text-positive">
         {fmtMoney(item.price)}
       </td>
@@ -47,5 +58,5 @@ export default function LootRow({ item }: LootRowProps) {
         {fmtMoney(item.price * amount)}
       </td>
     </tr>
-  );
+  )
 }

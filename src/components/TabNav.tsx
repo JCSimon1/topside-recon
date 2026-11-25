@@ -26,7 +26,7 @@ export default function TabNav<T extends string>({
   return (
     <nav
       aria-label="Hauptnavigation"
-      className="mb-6 flex gap-6 overflow-x-auto border-b border-border"
+      className="mb-6 mt-6 w-full flex overflow-x-auto pb-px border-b border-border"
     >
       {tabs.map(({ id, labelKey, icon }) => {
         const isActive = active === id
@@ -36,7 +36,7 @@ export default function TabNav<T extends string>({
             type="button"
             onClick={() => onChange(id)}
             aria-current={isActive ? 'page' : undefined}
-            className={`-mb-px flex shrink-0 cursor-pointer items-center gap-2 border-b-2 px-1 py-2.5 text-[14.5px] font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2 ${
+            className={`-mb-px flex flex-1 justify-center cursor-pointer items-center gap-2 border-b-2 px-3 py-2.5 text-[14.5px] font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2 ${
               isActive
                 ? 'border-accent text-text'
                 : 'border-transparent text-text-muted hover:text-text'

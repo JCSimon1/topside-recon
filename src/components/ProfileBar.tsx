@@ -4,6 +4,7 @@
 import { useSettings } from '../api/queries'
 import SteamCard from './SteamCard'
 import { useTranslation } from 'react-i18next'
+import Panel from './Panel'
 
 export default function ProfileBar() {
   const { data: settings } = useSettings()
@@ -15,8 +16,8 @@ export default function ProfileBar() {
     : t('profile.noRank')
 
   return (
-    <div className="mb-6 flex flex-wrap items-stretch justify-end rounded-sm border border-border bg-panel px-4 py-2.5">
-      <div className="flex items-center gap-3 px-3.5">
+    <Panel title="">
+      <div className="mb-6 flex flex-wrap items-stretch justify-end rounded-xl border border-white/10 bg-white/5 p-6">
         <div className="flex flex-col items-end gap-0.5 text-right">
           <div className="font-mono text-[10px] tracking-wide text-text-faint">
             {t('profile.rank')}
@@ -35,6 +36,6 @@ export default function ProfileBar() {
         )}
         <SteamCard />
       </div>
-    </div>
+    </Panel>
   )
 }

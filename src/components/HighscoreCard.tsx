@@ -24,7 +24,7 @@ export default function HighscoreCard({
   const { t } = useTranslation()
 
   return (
-    <div className="rounded-sm border border-border bg-panel p-4">
+    <div className="rounded-xl border border-white/10 bg-white/5 p-6">
       <div className="font-mono text-[10.5px] tracking-wide text-text-faint">
         {title}
       </div>

@@ -201,6 +201,11 @@
   width: 60px;
 }
 
+.table-cell-icon {
+  height: 30px;
+  width: 30px;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .tilt-card-shell,

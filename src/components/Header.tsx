@@ -3,7 +3,7 @@
 export default function Header() {
   return (
     <header
-      className="mb-6 flex min-h-75 items-end justify-between
+      className="rounded-xl mb-6 flex min-h-25 items-end justify-between
                  border-b border-border bg-cover bg-center
                  px-6 pb-4"
       style={{
